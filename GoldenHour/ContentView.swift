@@ -9,8 +9,42 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject var store: Datastore
+    var dateFormatter: DateFormatter
+    
+    init() {
+        self.store = Datastore()
+        self.dateFormatter = DateFormatter()
+        self.dateFormatter.dateFormat = "dd.MM.yyyy"
+    }
+    
     var body: some View {
-        Text("Hello, World!")
+        ZStack {
+            Color("BackgroundColor").edgesIgnoringSafeArea(.all)
+            VStack {
+                TimeTable().environmentObject(self.store)
+//                .font(.system(size: 15, weight: .heavy))
+            //.tabItem {
+//                Image(systemName: "sun.min.fill")
+//                Text("Tidspunkt")
+//            }
+            
+//            PlacePicker().tabItem {
+//                Image(systemName: "mappin")
+//                Text("Stader")
+//            }
+                HStack {
+                    Spacer()
+                    VStack {
+                        Text("\(self.store.placemark?.name ?? "Ukjent stad")")
+                        Text("\((self.store.placemark?.timeZone ?? TimeZone(secondsFromGMT: 900))!)")
+                    }.padding(10)
+                    Spacer()
+                }
+                .background(Color.white)
+                .cornerRadius(10)
+            }
+        }
     }
 }
 
