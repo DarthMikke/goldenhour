@@ -9,11 +9,7 @@
 import SwiftUI
 
 struct TimeTable: View {
-    
     @EnvironmentObject var store: Datastore
-    
-    init() {
-    }
     
     var body: some View {
         VStack(spacing: 0) {
@@ -62,7 +58,7 @@ struct TimeTable: View {
                     }
                     .padding(5.0)
                 }
-                .frame(width: 260.0)
+//                .frame(width: 260.0)
                 HStack {
                     Image(systemName: "chevron.left")
                     Text(self.store.localDate)
@@ -78,5 +74,6 @@ struct TimeTable: View {
             .cornerRadius(10)
             Spacer()
         }
+        .padding(20)
     }
 }

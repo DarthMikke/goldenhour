@@ -71,6 +71,7 @@ class Datastore: NSObject, ObservableObject {
     }
     
     private func geocode() {
+        // @TODO: Berre oppdater viss noko informasjon manglar OG plassen er endra med meir enn 1 breidde/lengdegrad
         guard let location = self.location else { return }
         geocoder.reverseGeocodeLocation(location, completionHandler: { (places, error) in
             if error == nil {
