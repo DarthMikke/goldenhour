@@ -13,7 +13,7 @@ class Datastore: NSObject, ObservableObject {
     private     let locationManager = CLLocationManager()
     private     let geocoder = CLGeocoder()
                 let objectWillChange = PassthroughSubject<Void, Never>()
-    private     var liveLocation: bool
+    private     var liveLocation: Bool
     
     @Published  var status: CLAuthorizationStatus? {
         willSet { objectWillChange.send() }
