@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		754DC3242517E2060016C200 /* GoldenHour.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 754DC31B2517E2060016C200 /* GoldenHour.xcdatamodeld */; };
+		754DC3252517E2060016C200 /* placesData.json in Resources */ = {isa = PBXBuildFile; fileRef = 754DC31D2517E2060016C200 /* placesData.json */; };
+		754DC3262517E2060016C200 /* Datastore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754DC31E2517E2060016C200 /* Datastore.swift */; };
+		754DC3272517E2060016C200 /* PlacesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754DC31F2517E2060016C200 /* PlacesData.swift */; };
+		754DC3282517E2060016C200 /* utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754DC3212517E2060016C200 /* utilities.swift */; };
+		754DC3292517E2060016C200 /* goldenFormulae.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754DC3222517E2060016C200 /* goldenFormulae.swift */; };
+		754DC32A2517E2060016C200 /* julianDayUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754DC3232517E2060016C200 /* julianDayUtilities.swift */; };
+		754DC3342517E2180016C200 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754DC3302517E2180016C200 /* Place.swift */; };
+		754DC3352517E2180016C200 /* PlacePickerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754DC3312517E2180016C200 /* PlacePickerRow.swift */; };
+		754DC3362517E2180016C200 /* TimeTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754DC3322517E2180016C200 /* TimeTableRow.swift */; };
+		754DC3372517E2180016C200 /* TimeRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754DC3332517E2180016C200 /* TimeRange.swift */; };
 		75D5869825152504001247D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D5869725152504001247D9 /* AppDelegate.swift */; };
 		75D5869A25152504001247D9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D5869925152504001247D9 /* SceneDelegate.swift */; };
 		75D5869D25152504001247D9 /* GoldenHour.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 75D5869B25152504001247D9 /* GoldenHour.xcdatamodeld */; };
@@ -36,6 +47,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		754DC31C2517E2060016C200 /* GoldenHour.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GoldenHour.xcdatamodel; sourceTree = "<group>"; };
+		754DC31D2517E2060016C200 /* placesData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = placesData.json; sourceTree = "<group>"; };
+		754DC31E2517E2060016C200 /* Datastore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Datastore.swift; sourceTree = "<group>"; };
+		754DC31F2517E2060016C200 /* PlacesData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesData.swift; sourceTree = "<group>"; };
+		754DC3212517E2060016C200 /* utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = utilities.swift; sourceTree = "<group>"; };
+		754DC3222517E2060016C200 /* goldenFormulae.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = goldenFormulae.swift; sourceTree = "<group>"; };
+		754DC3232517E2060016C200 /* julianDayUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = julianDayUtilities.swift; sourceTree = "<group>"; };
+		754DC3302517E2180016C200 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
+		754DC3312517E2180016C200 /* PlacePickerRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacePickerRow.swift; sourceTree = "<group>"; };
+		754DC3322517E2180016C200 /* TimeTableRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTableRow.swift; sourceTree = "<group>"; };
+		754DC3332517E2180016C200 /* TimeRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeRange.swift; sourceTree = "<group>"; };
 		75D5869425152504001247D9 /* GoldenHour.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoldenHour.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75D5869725152504001247D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		75D5869925152504001247D9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +100,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		754DC31A2517E2060016C200 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				754DC31B2517E2060016C200 /* GoldenHour.xcdatamodeld */,
+				754DC31D2517E2060016C200 /* placesData.json */,
+				754DC31E2517E2060016C200 /* Datastore.swift */,
+				754DC31F2517E2060016C200 /* PlacesData.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		754DC3202517E2060016C200 /* Logic */ = {
+			isa = PBXGroup;
+			children = (
+				754DC3212517E2060016C200 /* utilities.swift */,
+				754DC3222517E2060016C200 /* goldenFormulae.swift */,
+				754DC3232517E2060016C200 /* julianDayUtilities.swift */,
+			);
+			path = Logic;
+			sourceTree = "<group>";
+		};
+		754DC32E2517E2180016C200 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Resources;
+			path = GoldenHour/Resources;
+			sourceTree = SOURCE_ROOT;
+		};
+		754DC32F2517E2180016C200 /* Support Views */ = {
+			isa = PBXGroup;
+			children = (
+				754DC3302517E2180016C200 /* Place.swift */,
+				754DC3312517E2180016C200 /* PlacePickerRow.swift */,
+				754DC3322517E2180016C200 /* TimeTableRow.swift */,
+				754DC3332517E2180016C200 /* TimeRange.swift */,
+			);
+			name = "Support Views";
+			path = "GoldenHour/Support Views";
+			sourceTree = SOURCE_ROOT;
+		};
 		75D5868B25152504001247D9 = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +164,9 @@
 		75D5869625152504001247D9 /* GoldenHour */ = {
 			isa = PBXGroup;
 			children = (
+				754DC3202517E2060016C200 /* Logic */,
+				754DC31A2517E2060016C200 /* Models */,
+				754DC32F2517E2180016C200 /* Support Views */,
 				75D5869725152504001247D9 /* AppDelegate.swift */,
 				75D5869925152504001247D9 /* SceneDelegate.swift */,
 				75D5869E25152504001247D9 /* ContentView.swift */,
@@ -109,6 +175,7 @@
 				75D586A825152506001247D9 /* Info.plist */,
 				75D5869B25152504001247D9 /* GoldenHour.xcdatamodeld */,
 				75D586A225152506001247D9 /* Preview Content */,
+				754DC32E2517E2180016C200 /* Resources */,
 			);
 			path = GoldenHour;
 			sourceTree = "<group>";
@@ -244,6 +311,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				75D586A725152506001247D9 /* LaunchScreen.storyboard in Resources */,
+				754DC3252517E2060016C200 /* placesData.json in Resources */,
 				75D586A425152506001247D9 /* Preview Assets.xcassets in Resources */,
 				75D586A125152506001247D9 /* Assets.xcassets in Resources */,
 			);
@@ -272,8 +340,18 @@
 			files = (
 				75D5869825152504001247D9 /* AppDelegate.swift in Sources */,
 				75D5869D25152504001247D9 /* GoldenHour.xcdatamodeld in Sources */,
+				754DC3352517E2180016C200 /* PlacePickerRow.swift in Sources */,
+				754DC3272517E2060016C200 /* PlacesData.swift in Sources */,
+				754DC3242517E2060016C200 /* GoldenHour.xcdatamodeld in Sources */,
+				754DC3362517E2180016C200 /* TimeTableRow.swift in Sources */,
 				75D5869F25152504001247D9 /* ContentView.swift in Sources */,
 				75D5869A25152504001247D9 /* SceneDelegate.swift in Sources */,
+				754DC3372517E2180016C200 /* TimeRange.swift in Sources */,
+				754DC32A2517E2060016C200 /* julianDayUtilities.swift in Sources */,
+				754DC3282517E2060016C200 /* utilities.swift in Sources */,
+				754DC3262517E2060016C200 /* Datastore.swift in Sources */,
+				754DC3342517E2180016C200 /* Place.swift in Sources */,
+				754DC3292517E2060016C200 /* goldenFormulae.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -594,6 +672,16 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
+		754DC31B2517E2060016C200 /* GoldenHour.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				754DC31C2517E2060016C200 /* GoldenHour.xcdatamodel */,
+			);
+			currentVersion = 754DC31C2517E2060016C200 /* GoldenHour.xcdatamodel */;
+			path = GoldenHour.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
 		75D5869B25152504001247D9 /* GoldenHour.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
