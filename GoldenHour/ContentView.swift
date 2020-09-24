@@ -22,29 +22,33 @@ struct ContentView: View {
         ZStack {
             Color("BackgroundColor").edgesIgnoringSafeArea(.all)
             VStack {
-                TimeTable().environmentObject(self.store)
-//                .font(.system(size: 15, weight: .heavy))
-            //.tabItem {
-//                Image(systemName: "sun.min.fill")
-//                Text("Tidspunkt")
-//            }
-            
-//            PlacePicker().tabItem {
-//                Image(systemName: "mappin")
-//                Text("Stader")
-//            }
+                ScrollView {
+//                    Spacer()
+                    TimeTable().environmentObject(self.store).alignmentGuide(VerticalAlignment.center, computeValue: {_ in 0})
+                    //                .font(.system(size: 15, weight: .heavy))
+                    //.tabItem {
+                    //                Image(systemName: "sun.min.fill")
+                    //                Text("Tidspunkt")
+                    //            }
+//                    Spacer()
+                }
                 HStack {
                     Spacer()
                     VStack {
                         Text("\(self.store.placemark?.name ?? "Ukjent stad")")
-                        Text("\((self.store.placemark?.timeZone ?? TimeZone(secondsFromGMT: 900))!)")
+                        Text("\((self.store.placemark?.timeZone ?? TimeZone.current)!)")
                     }.padding(10)
+                    .padding(.bottom, 10)
                     Spacer()
+                    //            PlacePicker().tabItem {
+                    //                Image(systemName: "mappin")
+                    //                Text("Stader")
+                    //            }
                 }
                 .background(Color.white)
                 .cornerRadius(10)
             }
-        }
+        }.edgesIgnoringSafeArea(.bottom)
     }
 }
 
