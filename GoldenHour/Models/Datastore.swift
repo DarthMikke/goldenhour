@@ -10,8 +10,8 @@ import CoreLocation
 import Combine
 
 class Datastore: NSObject, ObservableObject {
-    private     let locationManager = CLLocationManager()
-    private     let geocoder = CLGeocoder()
+    private     let locationManager  = CLLocationManager()
+    private     let geocoder         = CLGeocoder()
                 let objectWillChange = PassthroughSubject<Void, Never>()
     private     var liveLocation: Bool
     
@@ -27,23 +27,23 @@ class Datastore: NSObject, ObservableObject {
         willSet { objectWillChange.send() }
     }
     
-                var latitude: Double?
-                var longitude: Double?
+                var latitude:   Double?
+                var longitude:  Double?
     
-                var jdFrom: Double
-                var jdTo:   Double
+                var jdFrom:     Double
+                var jdTo:       Double
     
-    @Published  var golden: Array<(String, String)>
-    @Published  var blue: Array<(String, String)>
-                var goldenJD: Array<(Double?, Double?)>?
-                var blueJD: Array<(Double?, Double?)>?
+    @Published  var golden:     Array<(String, String)>
+    @Published  var blue:       Array<(String, String)>
+                var goldenJD:   Array<(Double?, Double?)>?
+                var blueJD:     Array<(Double?, Double?)>?
     @Published  var sunriseSunset: Array<(Double?, Double?)>?
-    @Published  var sunrise: String
-    @Published  var sunset: String
-    @Published  var localDate: String
+    @Published  var sunrise:    String
+    @Published  var sunset:     String
+    @Published  var localDate:  String
     
-    @Published  var formatter: DateFormatter
-                var dateFormatter: DateFormatter
+    @Published  var formatter:      DateFormatter
+                var dateFormatter:  DateFormatter
     
     override init() {
         self.liveLocation = true
@@ -98,8 +98,9 @@ class Datastore: NSObject, ObservableObject {
         self.jdTo   = self.jdFrom + 1
         self.localDate = self.dateFormatter.string(from: localmidnight as Date)
         
-        self.goldenJD = findRange(lat: self.latitude!, long: self.longitude!, start: self.jdFrom, stop: self.jdTo, bottom: 4.0, top: 8.0)
-        self.blueJD = findRange(lat: self.latitude!, long: self.longitude!, start: self.jdFrom, stop: self.jdTo, bottom: -4.0, top: 4.0)
+        self.goldenJD = findRange(lat: self.latitude!, long: self.longitude!, start: self.jdFrom, stop: self.jdTo, bottom: -6.0, top: 6.0)
+        self.blueJD = findRange(lat: self.latitude!, long: self.longitude!, start: self.jdFrom, stop: self.jdTo, bottom: -10.0, top: -6.0)
+        self.sunriseSunset = findRange(lat: self.latitude!, long: self.longitude!, start: self.jdFrom, stop: self.jdTo, bottom: -1.0, top: 100.0)
         self.golden = []
         for sequence in self.goldenJD! {
             var start = "–"
@@ -125,7 +126,6 @@ class Datastore: NSObject, ObservableObject {
             self.blue.append((start, stop))
         }
         
-        self.sunriseSunset = findRange(lat: self.latitude!, long: self.longitude!, start: self.jdFrom, stop: self.jdTo, bottom: 0.0, top: 90.0)
         if self.sunriseSunset![0].0 == nil {
             self.sunrise = "–"
         } else {
