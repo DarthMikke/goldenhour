@@ -48,15 +48,16 @@ func elevation(lat: Double, long: Double, jd: Double) -> Double {
     return elevation
 }
 
-func findRange(lat: Double, long: Double, start: Double, stop: Double, bottom: Double, top: Double) -> Array<(Double?, Double?)> {
+func findRange(lat: Double, long: Double, start: Date, stop: Date, bottom: Double, top: Double) -> Array<(Double, Double)> {
     
-    var array: [(Double?, Double?)] = []
+    var array: [(Double, Double)] = []
     
-    let step = 1.0/60/24
-    var timeIn: Double?
-    var timeOut: Double?
+    let step = 1.0/60/24 // JD
+    var timeIn = 0.0
+    var timeOut = 0.0
     var lastelev = -99.0
-    var jd = start
+    var jd = jdFromDate(date: start as NSDate)
+    let stop = jdFromDate(date: stop as NSDate)
 
     while jd < stop {
         let elev = elevation(lat: lat, long: long, jd: jd)
@@ -90,6 +91,17 @@ func lastMidnight(timeZone: TimeZone = .current) -> Date? {
     dateOnly.dateFormat = "dd.MM.yyyy"
     
     let nowdate = Date()
+    let start = dateOnly.date(from: dateOnly.string(from: nowdate))
+    
+    return start
+}
+
+func lastMidnight(timeZone: TimeZone = .current, localTime: Date = Date()) -> Date? {
+    let dateOnly = DateFormatter()
+    dateOnly.timeZone = timeZone
+    dateOnly.dateFormat = "dd.MM.yyyy"
+    
+    let nowdate = localTime
     let start = dateOnly.date(from: dateOnly.string(from: nowdate))
     
     return start

@@ -8,6 +8,7 @@
 import Foundation
 import CoreLocation
 import Combine
+import SwiftUI
 
 class Datastore: NSObject, ObservableObject {
     private     let locationManager  = CLLocationManager()
@@ -30,8 +31,8 @@ class Datastore: NSObject, ObservableObject {
                 var latitude:   Double?
                 var longitude:  Double?
     
-                var jdFrom:     Double
-                var jdTo:       Double
+                var jdFrom:     Date
+                var jdTo:       Date
     
     @Published  var golden:     Array<(String, String)>
     @Published  var blue:       Array<(String, String)>
@@ -40,7 +41,21 @@ class Datastore: NSObject, ObservableObject {
     @Published  var sunriseSunset: Array<(Double?, Double?)>?
     @Published  var sunrise:    String
     @Published  var sunset:     String
-    @Published  var localDate:  String
+    @Published  var localDateString:  String  ///-TODO: endre namn til localDateString
+    @Published  var localDate:  Date {
+        didSet(newValue) {
+            print(newValue)
+            self.geocode()
+        }
+    }    ///-TODO: endre namn til localTime eller localDate
+    ///-TODO: Legg til didSet()
+    
+//    private var dateProxy:Binding<Date> {
+//        Binding<Date>(get: {self.date }, set: {
+//            self.date = $0
+//            self.updateWeekAndDayFromDate()
+//        })
+//    }
     
     @Published  var formatter:      DateFormatter
                 var dateFormatter:  DateFormatter
@@ -48,15 +63,16 @@ class Datastore: NSObject, ObservableObject {
     override init() {
         self.liveLocation = true
         
-        self.jdFrom = jdFromDate(date: lastMidnight()! as NSDate)
-        self.jdTo = jdFromDate(date: NSDate.init(timeInterval: 24*3600, since: lastMidnight()!))
+        self.localDate = Date()
+        self.jdFrom = lastMidnight()!
+        self.jdTo = Date(timeInterval: 24*3600, since: self.jdFrom)
         self.formatter = DateFormatter()
         self.dateFormatter = DateFormatter()
         self.blue = [("–", "–"), ("–", "–")]
         self.golden = [("–", "–"), ("–", "–")]
         self.sunrise = "–"
         self.sunset = "–"
-        self.localDate = ".."
+        self.localDateString = ".."
         
         super.init()
         
@@ -93,10 +109,10 @@ class Datastore: NSObject, ObservableObject {
         self.latitude = self.location?.coordinate.latitude ?? 0
         self.longitude = self.location?.coordinate.longitude ?? 0
         
-        let localmidnight = lastMidnight(timeZone: self.placemark?.timeZone ?? .current)! as NSDate
-        self.jdFrom = jdFromDate(date: localmidnight)
-        self.jdTo   = self.jdFrom + 1
-        self.localDate = self.dateFormatter.string(from: localmidnight as Date)
+        let localMidnight = lastMidnight(timeZone: self.placemark?.timeZone ?? .current, localTime: self.localDate)!
+        self.jdFrom = localMidnight
+        self.jdTo   = self.jdFrom + 24*3600
+        self.localDateString = self.dateFormatter.string(from: localMidnight)
         
         self.goldenJD = findRange(lat: self.latitude!, long: self.longitude!, start: self.jdFrom, stop: self.jdTo, bottom: -6.0, top: 6.0)
         self.blueJD = findRange(lat: self.latitude!, long: self.longitude!, start: self.jdFrom, stop: self.jdTo, bottom: -10.0, top: -6.0)

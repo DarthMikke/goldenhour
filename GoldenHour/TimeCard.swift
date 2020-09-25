@@ -1,5 +1,5 @@
 //
-//  TimeTable.swift
+//  TimeCard.swift
 //  GoldenHour
 //
 //  Created by Michal Jan Warecki on 19/09/2020.
@@ -9,11 +9,26 @@
 import SwiftUI
 
 struct TimeTable: View {
-    @EnvironmentObject var store: Datastore
+    @EnvironmentObject  var store:  Datastore
+    @State              var showDatePicker: Bool = false
+//    @State              var date:   Date {
+//        didSet(newValue) {
+//            print("New date: \(newValue)")
+//            self.store.localTime = self.date
+//        }
+//    }
+    
+//    init() {
+//        let placeholderDate = Date()
+//        self.date = placeholderDate
+//    }
+    
+    func toggleDatePicker() {
+        self.showDatePicker = !self.showDatePicker
+    }
     
     var body: some View {
         VStack(spacing: 0) {
-            Spacer()
             VStack {
                 VStack(spacing: 0) {
                     HStack {
@@ -60,19 +75,38 @@ struct TimeTable: View {
                 }
 //                .frame(width: 260.0)
                 HStack {
-                    Image(systemName: "chevron.left")
-                    Text(self.store.localDate)
+                    Spacer().frame(width: 10)
+                    Button(action: {self.store.localDate = Date(timeInterval:  -24*3600, since: self.store.localDate)}) {
+                        Image(systemName: "chevron.left")
+                    }
+                    Text(self.store.localDateString)
                         .fontWeight(.bold)
-                    Image(systemName: "chevron.right")
+                        .onTapGesture {
+                            withAnimation {
+                                self.toggleDatePicker()
+                            }
+                        }
+                    Button(action: {self.store.localDate = Date(timeInterval:  24*3600, since: self.store.localDate)}) {
+                        Image(systemName: "chevron.right")
+                    }
+                    Spacer().frame(width: 10)
                 }
                 .font(.title)
                 .padding(.bottom, 15.0)
                 .padding(.top, 20.0)
+                
+                if self.showDatePicker {
+                    DatePicker("", selection: self.$store.localDate, displayedComponents: .date)
+                        .datePickerStyle(WheelDatePickerStyle())
+                        .transition(.slide)
+                }
+                
+//                Form {
+//                }
             }
             .background(Color.white.edgesIgnoringSafeArea(.all))
             .foregroundColor(Color("ForegroundColor"))
             .cornerRadius(10)
-            Spacer()
         }
         .padding(20)
     }

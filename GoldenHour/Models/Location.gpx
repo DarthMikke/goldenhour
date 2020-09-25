@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<gpx version="1.1" creator="Xcode">
+    
+    <!--
+     Provide one or more waypoints containing a latitude/longitude pair. If you provide one
+     waypoint, Xcode will simulate that specific location. If you provide multiple waypoints,
+     Xcode will simulate a route visiting each waypoint.
+     -->
+    <wpt lat="59.0124" lon="5.7383">
+        <name>Kuneset</name>
+        
+        <!--
+         Optionally provide a time element for each waypoint. Xcode will interpolate movement
+         at a rate of speed based on the time elapsed between each waypoint. If you do not provide
+         a time element, then Xcode will use a fixed rate of speed.
+         
+         Waypoints must be sorted by time in ascending order.
+         -->
+        <time>2014-09-24T14:55:37Z</time>
+    </wpt>
+    <wpt lat="60.1354" lon="7.5064">
+        <name>Hardangervidda</name>
+    </wpt>
+    <wpt lat="63.42235" lon="10.43204">
+        <name>Tyholt</name>
+    </wpt>
+    <wpt lat="66.5138" lon="12.0486">
+        <name>Træna</name>
+    </wpt>
+    <wpt lat="78.2234" lon="15.6246">
+        <name>Longyearbyen</name>
+    </wpt>
+    
+    <!--
+    Kuneset:        59.0124,    5.7383
+    Hardangervidda: 60.1354,    7.5064
+    Tyholt:         63.42235,  10.43204
+    Træna:          66.5138,   12.0486
+    Longyearbyen:   78.2234,   15.6246
+    -->
+    
+</gpx>
