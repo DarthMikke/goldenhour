@@ -29,8 +29,8 @@ struct TimeTable: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            VStack {
-                VStack(spacing: 0) {
+            VStack(alignment: .center) {
+                VStack(alignment: .leading, spacing: 0) {
                     HStack {
                         Image(systemName: "sunrise")
                         Spacer()
@@ -95,14 +95,18 @@ struct TimeTable: View {
                 .padding(.bottom, 15.0)
                 .padding(.top, 20.0)
                 
-                if self.showDatePicker {
-                    DatePicker("", selection: self.$store.localDate, displayedComponents: .date)
-                        .datePickerStyle(WheelDatePickerStyle())
-                        .transition(.slide)
-                }
                 
-//                Form {
-//                }
+                if self.showDatePicker {
+//                    Form {
+                    HStack {
+                        Spacer()
+                        DatePicker("", selection: self.$store.localDate, displayedComponents: .date)
+                            .datePickerStyle(WheelDatePickerStyle())
+                            .transition(.slide)
+//                    }
+                        Spacer(minLength: 30)
+                    }
+                }
             }
             .background(Color.white.edgesIgnoringSafeArea(.all))
             .foregroundColor(Color("ForegroundColor"))

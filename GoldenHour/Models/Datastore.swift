@@ -116,7 +116,7 @@ class Datastore: NSObject, ObservableObject {
         
         self.goldenJD = findRange(lat: self.latitude!, long: self.longitude!, start: self.jdFrom, stop: self.jdTo, bottom: -6.0, top: 6.0)
         self.blueJD = findRange(lat: self.latitude!, long: self.longitude!, start: self.jdFrom, stop: self.jdTo, bottom: -10.0, top: -6.0)
-        self.sunriseSunset = findRange(lat: self.latitude!, long: self.longitude!, start: self.jdFrom, stop: self.jdTo, bottom: -1.0, top: 100.0)
+        self.sunriseSunset = findRange(lat: self.latitude!, long: self.longitude!, start: self.jdFrom, stop: self.jdTo, bottom: -0.0, top: 100.0)
         self.golden = []
         for sequence in self.goldenJD! {
             var start = "–"
