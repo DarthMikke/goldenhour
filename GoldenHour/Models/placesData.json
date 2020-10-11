@@ -4,20 +4,23 @@
         "name": "Tromsø",
         "countryCode": "NO",
         "lat": 69.651944,
-        "long": 18.953333
+        "long": 18.953333,
+        "GMTOffset": 7200
     },
     {
         "id": 1002,
         "name": "London",
         "countryCode": "UK",
         "lat": 0.0,
-        "long": 0.0
+        "long": 0.0,
+        "GMTOffset": 3600
     },
     {
         "name": "Turtle Rock, Joshua Tree National Park",
         "id": 1003,
         "long": -116.166868,
         "lat": 34.011286,
-        "countryCode": "US"
+        "countryCode": "US",
+        "GMTOffset": -25200
     }
 ]

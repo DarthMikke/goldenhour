@@ -11,12 +11,12 @@ import Intents
 import Contacts
 import Combine
 import SwiftUI
+//import CoreData
 
 class Datastore: NSObject, ObservableObject {
     private     let locationManager  = CLLocationManager()
     private     let geocoder         = CLGeocoder()
                 let objectWillChange = PassthroughSubject<Void, Never>()
-    private     var liveLocation: Bool
     
     @Published  var status: CLAuthorizationStatus? {
         willSet { objectWillChange.send() }
@@ -94,6 +94,8 @@ class Datastore: NSObject, ObservableObject {
         self.formatter.timeZone = .current
         self.formatter.dateFormat = "HH:mm"
         self.dateFormatter.dateFormat = "dd.MM.yyyy"
+        
+//        print(self.places)
     }
     
     private func geocode() {
