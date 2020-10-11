@@ -32,6 +32,7 @@ class Datastore: NSObject, ObservableObject {
 //    @State      var showPicker:     Bool = false
     @Published  var locationId:     UUID?
                 var selectedLocation: CLLocation?
+                var selectedLocationName: String?
 //    @FetchRequest(entity: Place.entity(), sortDescriptors: []) var places: FetchedResults<Place>
     @Environment(\.managedObjectContext) var moc
     
@@ -52,8 +53,9 @@ class Datastore: NSObject, ObservableObject {
     @Published  var localDateString:  String
     @Published  var localDate:  Date {
         didSet(newValue) {
-            print(newValue)
-            self.geocode()
+            print("Datastore:\(#line) \(newValue)")
+            self.updateVisibleLocation()
+            self.updateHours()
         }
     }
     
@@ -124,13 +126,15 @@ class Datastore: NSObject, ObservableObject {
         /// Manuell lokasjonssetjing
         print("Set lokasjon til \(String(describing: place.name))")
         self.isLocationLive = false
+        self.selectedLocationName = place.name
         
         let temporaryLocation = CLLocation(latitude: place.latitude, longitude: place.longitude)
         self.selectedLocation = temporaryLocation
 //        self.placemark = CLPlacemark(location: temporaryLocation, name: place.name, postalAddress: nil)
         self.formatter.timeZone = TimeZone(secondsFromGMT: Int(place.gmtOffset))
+        self.dateFormatter.timeZone = self.formatter.timeZone
         
-        self.updateVisibleLocation(with: place.name)
+        self.updateVisibleLocation()
         self.updateHours()
     }
     
@@ -140,7 +144,7 @@ class Datastore: NSObject, ObservableObject {
         self.geocode()
     }
     
-    func updateVisibleLocation(with name: String? = nil) {
+    func updateVisibleLocation() {
         var locationString: String
         let latitude: Double
         let longitude: Double
@@ -150,7 +154,7 @@ class Datastore: NSObject, ObservableObject {
             latitude = self.liveLocation?.coordinate.latitude ?? 0.0
             longitude = self.liveLocation?.coordinate.longitude ?? 0.0
         } else {
-            locationString = "\(name!)\n"
+            locationString = "\(self.selectedLocationName!)\n"
             latitude = self.selectedLocation?.coordinate.latitude ?? 0
             longitude = self.selectedLocation?.coordinate.longitude ?? 0
         }
@@ -225,8 +229,8 @@ class Datastore: NSObject, ObservableObject {
             self.sunset = self.formatter.string(from: dateFromJd(jd: sunriseSunset![0].1!) as Date)
         }
         
-        print("JD: \(self.jdFrom) – \(self.jdTo)")
-        print("Sunrise: \(self.sunrise), sunset: \(self.sunset)")
+        print("Datastore:\(#line) JD: \(self.jdFrom) – \(self.jdTo)")
+        print("Datastore:\(#line) Sunrise: \(self.sunrise), sunset: \(self.sunset)")
     }
 }
 
