@@ -41,14 +41,15 @@ struct PlacePicker: View {
                 }
                 if !isPreview {
                     ForEach(self.places) { place in
-                        PlaceRow(place: place).onTapGesture(count: 1, perform: {
-                            if place.id != nil {
+                        PlaceRow(place: place)
+                            .onTapGesture(count: 1, perform: {
+                                if place.id != nil {
 //                                self.store.setLocation(id: place.id!)
-                                self.store.setLocation(to: place)
-                                self.showSelf = false
-                            }
-                            print(place.id ?? "–")
-                        })
+                                    self.store.setLocation(to: place)
+                                    self.showSelf = false
+                                }
+                                print(place.id ?? "–")
+                            })
                     }.onDelete(perform: deletePlace)
                 }
                 if isPreview {
