@@ -9,10 +9,11 @@
 import SwiftUI
 import CoreLocation
 
-struct Place: Hashable, Codable, Identifiable {
-    var id: Int
-    var name: String
-    var lat: Double
-    var long: Double
-    var countryCode: String
-}
+//struct Place: Hashable, Codable, Identifiable {
+//    var id: Int
+//    var name: String
+//    var lat: Double
+//    var long: Double
+//    var countryCode: String
+//    var GMTOffset: Int
+//}

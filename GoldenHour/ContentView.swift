@@ -9,13 +9,16 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var store: Datastore
-    var dateFormatter: DateFormatter
+    @ObservedObject var store:          Datastore
+                    var dateFormatter:  DateFormatter
+    @State          var showPicker:     Bool = false
+    @State          var showNewPlaceForm: Bool = false
     
     init() {
         self.store = Datastore()
         self.dateFormatter = DateFormatter()
         self.dateFormatter.dateFormat = "dd.MM.yyyy"
+//        self.showPicker = false
     }
     
     var body: some View {
@@ -44,7 +47,45 @@ struct ContentView: View {
                     //                Image(systemName: "mappin")
                     //                Text("Stader")
                     //            }
-                }
+                }.onTapGesture(count: 1, perform: {
+                    print("Vis PlacePicker")
+                    self.showPicker = true
+                })
+                .sheet(isPresented: self.$showPicker, content: {
+//                    PlacePicker(placesData: load("placesData.json"))
+                    NavigationView {
+                        PlacePicker(showSelf: self.$showPicker)
+                            .environmentObject(self.store)
+                            .navigationBarItems(trailing: HStack {
+                                Button(action: {
+                                    self.showNewPlaceForm = true
+                                }, label: {
+                                    HStack {
+                                        Image(systemName: "plus")
+                                        Text("Legg til plass")
+                                    }.padding()
+                                }).font(.headline)
+                                Button(action: {
+                                    self.showPicker = false
+                                }, label: {
+                                    Image(systemName: "xmark")
+                                }).font(.headline)
+                            })
+                            .navigationBarTitle(Text("Stader"))
+                            .sheet(isPresented: self.$showNewPlaceForm, content: {
+                                NavigationView {
+                                    NewPlaceFormView(showNewPlaceForm: self.$showNewPlaceForm)
+                                        .environmentObject(self.store)
+                                        .navigationBarTitle(Text("Ny stad"))
+                                        .navigationBarItems(trailing: Button(action: {
+                                            self.showNewPlaceForm = false
+                                        }) {
+                                            Image(systemName: "xmark")
+                                        })
+                                }
+                            })
+                    }
+                })
                 .background(Color.white)
                 .cornerRadius(10)
             }

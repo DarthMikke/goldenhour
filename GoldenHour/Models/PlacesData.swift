@@ -10,8 +10,6 @@ import UIKit
 import SwiftUI
 import CoreLocation
 
-let placesData: [Place] = load("placesData.json")
-
 func load<T: Decodable>(_ filename: String) -> T {
     let data: Data
     
