@@ -50,6 +50,7 @@ func elevation(lat: Double, long: Double, jd: Double) -> Double {
 
 func findRange(lat: Double, long: Double, start: Date, stop: Date, bottom: Double, top: Double) -> Array<(Double, Double)> {
     
+    let startTime = DispatchTime.now()
     var array: [(Double, Double)] = []
     
     let step = 1.0/60/24 // JD
@@ -82,6 +83,10 @@ func findRange(lat: Double, long: Double, start: Date, stop: Date, bottom: Doubl
         array.append((timeIn, timeOut))
     }
     
+    let endTime = DispatchTime.now()
+    #if DEBUG
+    print("\(#function):\(#line) \((endTime.uptimeNanoseconds - startTime.uptimeNanoseconds)/1000000000) sekund")
+    #endif
     return array
 }
 
