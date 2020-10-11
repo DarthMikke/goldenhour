@@ -32,15 +32,24 @@ struct PlaceRow: View {
     }
     
     var body: some View {
-        VStack {
-            HStack {
-                Text("\(self.name ?? "Ukjent"), \(self.countryCode ?? "Ukjent land")")
-                Spacer()
+        HStack {
+            VStack {
+                HStack {
+                    Text("\(self.name ?? "Ukjent"), \(self.countryCode ?? "Ukjent land")")
+                    Spacer()
+                }
+                HStack {
+                    Text("\(self.latitude ) N, \(self.longitude ) A")
+                    Spacer()
+                }
             }
-            HStack {
-                Text("\(self.latitude ) N, \(self.longitude ) A")
-                Spacer()
-            }
+//            Spacer()
+//            Button(action: {
+//                // Fjern elementet
+//                return
+//            }) {
+//                Image("xmark")
+//            }
         }
     }
 }

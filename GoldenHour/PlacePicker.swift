@@ -11,7 +11,7 @@ import SwiftUI
 
 struct PlacePicker: View {
     @FetchRequest(entity: Place.entity(), sortDescriptors: []) var places: FetchedResults<Place>
-//    @Environment(\.managedObjectContext) var moc
+    @Environment(\.managedObjectContext) var moc
     @EnvironmentObject var store: Datastore
     @Binding var showSelf: Bool
     
@@ -49,7 +49,7 @@ struct PlacePicker: View {
                             }
                             print(place.id ?? "–")
                         })
-                    }
+                    }.onDelete(perform: deletePlace)
                 }
                 if isPreview {
                     ForEach(1..<3, id: \.self) {
@@ -58,6 +58,19 @@ struct PlacePicker: View {
                 }
             }
         }
+    }
+    
+    func deletePlace(at offsets: IndexSet) {
+        for offset in offsets {
+            // find this book in our fetch request
+            let place = places[offset]
+
+            // delete it from the context
+            moc.delete(place)
+        }
+
+        // save the context
+        try? moc.save()
     }
 }
 
