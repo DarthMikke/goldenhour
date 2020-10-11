@@ -99,65 +99,69 @@ class Datastore: NSObject, ObservableObject {
     }
     
     private func geocode() {
-        if self.liveLocation == false {
-            return
-        }
         // @TODO: Berre oppdater viss noko informasjon manglar OG plassen er endra med meir enn 1 breidde/lengdegrad
         guard let location = self.location else { return }
         geocoder.reverseGeocodeLocation(location, completionHandler: { (places, error) in
+            print("\(#line) \(places)")
             if error == nil {
                 self.placemark = places?[0]
+                
                 self.formatter.timeZone = self.placemark?.timeZone
+                print("New location: \(self.location == nil ? "–" : String(describing: self.location!.coordinate))")
+                print("New placemark: \(self.placemark?.name ?? "–") with timezone: \(String(describing: self.placemark?.timeZone?.secondsFromGMT()))")
+                
             } else {
                 self.placemark = nil
             }
         })
-        // Update timezone with placemark timezone
-        // https://developer.apple.com/documentation/corelocation/clplacemark
-        print("New location: \(self.location)")
-        print("New placemark: \(self.placemark?.name ?? "–") with timezone: \(String(describing: self.placemark?.timeZone?.secondsFromGMT()))")
         
-        self.updateVisibleLocation()
-        self.updateHours()
-    }
-    
-    func updateVisibleLocation() {
-        var locationString = "\(self.placemark?.name ?? "–")"//", \(place!.countryCode)\n"
-        let latitude = self.location?.coordinate.latitude ?? 0.0
-        let longitude = self.location?.coordinate.longitude ?? 0.0
-        if latitude < 0 {
-            locationString += "\(latitude) S, "
-        } else {
-            locationString += "\(latitude) N, "
+        if self.liveLocation == true {
+            self.updateVisibleLocation()
+            self.updateHours()
         }
-        if longitude < 0 {
-            locationString += "\(longitude) V"
-        } else {
-            locationString += "\(longitude) A"
-        }
-        self.locationString = locationString
-        
     }
     
     func setLocation(to place: Place) {
         /// Manuell lokasjonssetjing
-        print("Set lokasjon til \(place.name)")
+        print("Set lokasjon til \(String(describing: place.name))")
         self.liveLocation = false
         print(type(of: place))
         
         let temporaryLocation = CLLocation(latitude: place.latitude, longitude: place.longitude)
         self.location = temporaryLocation
-        self.placemark = CLPlacemark(location: temporaryLocation, name: place.name, postalAddress: nil)
+//        self.placemark = CLPlacemark(location: temporaryLocation, name: place.name, postalAddress: nil)
         self.formatter.timeZone = TimeZone(secondsFromGMT: Int(place.gmtOffset))
         
-        
-        self.updateVisibleLocation()
+        self.updateVisibleLocation(with: place.name)
         self.updateHours()
     }
     
     func autolocate() {
         self.liveLocation = true
         self.geocode()
+        self.updateHours()
+    }
+    
+    func updateVisibleLocation(with name: String? = nil) {
+        var locationString: String
+        if name == nil {
+            locationString = "\(self.placemark?.name ?? "–")\n"//", \(place!.countryCode)\n"
+        } else {
+            locationString = "\(name!)\n"
+        }
+        let latitude = self.location?.coordinate.latitude ?? 0.0
+        let longitude = self.location?.coordinate.longitude ?? 0.0
+        if latitude < 0 {
+            locationString += "\(-latitude) S, "
+        } else {
+            locationString += "\(latitude) N, "
+        }
+        if longitude < 0 {
+            locationString += "\(-longitude) V"
+        } else {
+            locationString += "\(longitude) A"
+        }
+        self.locationString = locationString
     }
     
     private func updateHours() {

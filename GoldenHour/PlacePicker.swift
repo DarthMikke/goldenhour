@@ -23,11 +23,11 @@ struct PlacePicker: View {
                 VStack {
                     HStack {
                         //                            Text(self.store.locationString)
-                        Image(systemName: "location.fill")
                         Text("\(self.store.placemark?.name ?? "Ukjent stad")")
                         Spacer()
                     }
                     HStack {
+                        Image(systemName: "location.fill")
                         Text("Noverande posisjon")
                         Spacer()
                     }

@@ -13,6 +13,7 @@ struct ContentView: View {
                     var dateFormatter:  DateFormatter
     @State          var showPicker:     Bool = false
     @State          var showNewPlaceForm: Bool = false
+    @Environment(\.managedObjectContext) var moc
     
     init() {
         self.store = Datastore()
@@ -38,8 +39,7 @@ struct ContentView: View {
                 HStack {
                     Spacer()
                     VStack {
-                        Text("\(self.store.placemark?.name ?? "Ukjent stad")")
-                        Text("\((self.store.placemark?.timeZone ?? TimeZone.current)!)")
+                        Text("\(self.store.locationString)")
                     }.padding(10)
                     .padding(.bottom, 10)
                     Spacer()
@@ -55,6 +55,7 @@ struct ContentView: View {
 //                    PlacePicker(placesData: load("placesData.json"))
                     NavigationView {
                         PlacePicker(showSelf: self.$showPicker)
+                            .environment(\.managedObjectContext, moc)
                             .environmentObject(self.store)
                             .navigationBarItems(trailing: HStack {
                                 Button(action: {
@@ -75,6 +76,7 @@ struct ContentView: View {
                             .sheet(isPresented: self.$showNewPlaceForm, content: {
                                 NavigationView {
                                     NewPlaceFormView(showNewPlaceForm: self.$showNewPlaceForm)
+                                        .environment(\.managedObjectContext, moc)
                                         .environmentObject(self.store)
                                         .navigationBarTitle(Text("Ny stad"))
                                         .navigationBarItems(trailing: Button(action: {
