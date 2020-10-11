@@ -10,6 +10,7 @@ import SwiftUI
 
 struct NewPlaceFormView: View {
     @EnvironmentObject var store: Datastore
+    @Environment(\.managedObjectContext) var moc
     
     @Binding var showNewPlaceForm: Bool
     @State var name: String = ""
@@ -32,15 +33,20 @@ struct NewPlaceFormView: View {
                 TextField("GMT offset", text: self.$gmtOffset)
             }
             Button("Lagre") {
-                let place = Place(context: self.store.moc)
+                let place = Place(context: self.moc)
                 place.id = UUID()
                 place.name = self.name
                 place.latitude = Double(self.latitude) ?? 0.0
                 place.longitude = Double(self.longitude) ?? 0.0
                 place.countryCode = self.countryCode
                 place.gmtOffset = Int32(self.gmtOffset) ?? 0
+                print("NewPlaceFormView:\(#line) Ny plass: \(self.name), \(self.countryCode) @ (\(self.latitude),\(self.longitude)) T\(self.gmtOffset)")
                 
-                try? self.store.moc.save()
+                do {
+                    try self.moc.save()
+                } catch let error {
+                    print("NewPlaceFormView:\(#line) Lagra ikkje ny plass. Feil: \(error)")
+                }
                 
                 self.name = ""
                 self.latitude = ""
