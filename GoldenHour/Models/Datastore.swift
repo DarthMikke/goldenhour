@@ -2,7 +2,7 @@
 //  LocationManager.swift
 //  GoldenHour
 //
-//  https://adrianhall.github.io/swift/2019/11/05/swiftui-location/
+//  Based on https://adrianhall.github.io/swift/2019/11/05/swiftui-location/
 //
 
 import Foundation
@@ -205,6 +205,9 @@ class Datastore: NSObject, ObservableObject {
             }
             self.golden.append((start, stop))
         }
+        while self.golden.count < 2 {
+            self.golden.append(("–", "–"))
+        }
         self.blue = []
         for sequence in self.blueJD! {
             var start = "–"
@@ -217,16 +220,18 @@ class Datastore: NSObject, ObservableObject {
             }
             self.blue.append((start, stop))
         }
-        
-        if self.sunriseSunset![0].0 == nil {
-            self.sunrise = "–"
-        } else {
-            self.sunrise = self.formatter.string(from: dateFromJd(jd: sunriseSunset![0].0!) as Date)
+        while self.blue.count < 2 {
+            self.blue.append(("–", "–"))
         }
-        if self.sunriseSunset![0].1 == nil {
-            self.sunset = "–"
-        } else {
-            self.sunset = self.formatter.string(from: dateFromJd(jd: sunriseSunset![0].1!) as Date)
+        
+        self.sunrise = "–"
+        self.sunset = "–"
+        
+        if self.sunriseSunset != nil {
+            if self.sunriseSunset!.count > 0 {
+                self.sunrise = self.formatter.string(from: dateFromJd(jd: sunriseSunset![0].0!) as Date)
+                self.sunset = self.formatter.string(from: dateFromJd(jd: sunriseSunset![0].1!) as Date)
+            }
         }
         
         print("Datastore:\(#line) JD: \(self.jdFrom) – \(self.jdTo)")
