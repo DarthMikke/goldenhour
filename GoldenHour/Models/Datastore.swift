@@ -25,7 +25,6 @@ class Datastore: NSObject, ObservableObject {
     @Published  var location: CLLocation? {
         willSet { objectWillChange.send() }
     }
-    
     @Published  var placemark: CLPlacemark? {
         willSet { objectWillChange.send() }
     }
@@ -50,14 +49,13 @@ class Datastore: NSObject, ObservableObject {
     @Published  var sunriseSunset: Array<(Double?, Double?)>?
     @Published  var sunrise:    String
     @Published  var sunset:     String
-    @Published  var localDateString:  String  ///-TODO: endre namn til localDateString
+    @Published  var localDateString:  String
     @Published  var localDate:  Date {
         didSet(newValue) {
             print(newValue)
             self.geocode()
         }
-    }    ///-TODO: endre namn til localTime eller localDate
-    ///-TODO: Legg til didSet()
+    }
     
 //    private var dateProxy:Binding<Date> {
 //        Binding<Date>(get: {self.date }, set: {
