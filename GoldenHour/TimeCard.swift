@@ -108,7 +108,7 @@ struct TimeTable: View {
                     }
                 }
             }
-            .background(Color.white.edgesIgnoringSafeArea(.all))
+            .background(Color("CardBackground").edgesIgnoringSafeArea(.all))
             .foregroundColor(Color("ForegroundColor"))
             .cornerRadius(10)
         }

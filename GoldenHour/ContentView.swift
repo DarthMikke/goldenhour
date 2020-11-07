@@ -14,7 +14,6 @@ struct ContentView: View {
     @State          var showPicker:     Bool = false
     @State          var showNewPlaceForm: Bool = false
     @Environment(\.managedObjectContext) var moc
-//    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     init() {
         self.store = Datastore()
@@ -89,11 +88,7 @@ struct ContentView: View {
                             })
                     }
                 })
-//                .onReceive(timer) { time in
-////                    print("The time is now \(time)")
-//                    self.store.updateHours()
-//                }
-                .background(Color.white)
+                .background(Color("CardBackground"))
                 .cornerRadius(10)
             }
         }.edgesIgnoringSafeArea(.bottom)

@@ -71,7 +71,7 @@ class Datastore: NSObject, ObservableObject {
     
     override init() {
         self.isLocationLive = true
-        self.locationString = ""
+        self.locationString = "Finn posisjon…\n"
         
         self.localDate = Date()
         self.fromDate = lastMidnight()!
@@ -99,7 +99,7 @@ class Datastore: NSObject, ObservableObject {
     }
     
     private func geocode() {
-        // @TODO: Berre oppdater viss noko informasjon manglar OG plassen er endra med meir enn 1 breidde/lengdegrad
+        // @TODO: Oppdater dato og manuell stad sjølv om det er for dåleg dekning for ei smidig oppleving med "completionHandler"
         guard let location = self.liveLocation else { return }
         geocoder.reverseGeocodeLocation(location, completionHandler: { (places, error) in
             print("Datastore:\(#line) \(String(describing: places))")
@@ -109,7 +109,7 @@ class Datastore: NSObject, ObservableObject {
                 print("Datastore:\(#line) New location: \(self.liveLocation == nil ? "–" : String(describing: self.liveLocation!.coordinate))")
                 print("Datastore:\(#line) New placemark: \(self.placemark?.name ?? "–") with timezone: \(String(describing: self.placemark?.timeZone?.secondsFromGMT()))")
                 
-                if self.isLocationLive == true {
+                if self.isLocationLive == true { // @TODO: Flytt det her ut av "completionHandler"
                     self.formatter.timeZone = self.placemark?.timeZone
                 }// else {
                     self.updateVisibleLocation()
