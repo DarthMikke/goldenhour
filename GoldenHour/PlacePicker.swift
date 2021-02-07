@@ -75,8 +75,8 @@ struct PlacePicker: View {
     }
 }
 
-//struct PlacePicker_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PlacePicker(isPreview: true)
-//    }
-//}
+struct PlacePicker_Previews: PreviewProvider {
+    static var previews: some View {
+        PlacePicker(isPreview: true)
+    }
+}

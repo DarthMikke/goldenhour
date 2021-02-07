@@ -20,7 +20,6 @@ struct PlaceRow: View {
         self.latitude = place.latitude
         self.longitude = place.longitude
         self.countryCode = place.countryCode
-        
     }
     
     init(name: String, latitude: Double, longitude: Double, countryCode: String) {
@@ -39,7 +38,7 @@ struct PlaceRow: View {
                     Spacer()
                 }
                 HStack {
-                    Text("\(self.latitude ) N, \(self.longitude ) A")
+                    Text("\(round(self.latitude*100)/100 ) N, \(round(self.longitude*100)/100 ) A")
                     Spacer()
                 }
             }
@@ -54,6 +53,7 @@ struct PlaceRow: View {
     }
 }
 
+#if DEBUG
 /// #Only for preview:
 struct PlacePickerView_Previews: PreviewProvider {
     static var previews: some View {
@@ -61,3 +61,4 @@ struct PlacePickerView_Previews: PreviewProvider {
 //        Text("PlaceRow")
     }
 }
+#endif

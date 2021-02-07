@@ -21,6 +21,8 @@ class Datastore: NSObject, ObservableObject {
     @Published  var status: CLAuthorizationStatus? {
         willSet { objectWillChange.send() }
     }
+    
+    private     var numberFormatter: NumberFormatter
     @Published  var liveLocation: CLLocation? {
         willSet { objectWillChange.send() }
     }
@@ -31,7 +33,7 @@ class Datastore: NSObject, ObservableObject {
     @Published  var isLocationLive:   Bool
 //    @State      var showPicker:     Bool = false
     @Published  var locationId:     UUID?
-    private     var selectedLocation: CLLocation?
+    @Published  var selectedLocation: CLLocation?
     private     var selectedLocationName: String?
 //    @FetchRequest(entity: Place.entity(), sortDescriptors: []) var places: FetchedResults<Place>
     @Environment(\.managedObjectContext) var moc
@@ -72,6 +74,10 @@ class Datastore: NSObject, ObservableObject {
     override init() {
         self.isLocationLive = true
         self.locationString = "Finn posisjon…\n"
+        
+        self.numberFormatter = NumberFormatter()
+        self.numberFormatter.numberStyle = .decimal
+        self.numberFormatter.maximumFractionDigits = 2
         
         self.localDate = Date()
         self.fromDate = lastMidnight()!
@@ -141,6 +147,10 @@ class Datastore: NSObject, ObservableObject {
         self.updateHours()
     }
     
+    func getLocation() -> CLLocation? {
+        return liveLocation
+    }
+    
     func autolocate() {
         print("\(#line) self.isLocationLive = true")
         self.isLocationLive = true
@@ -149,8 +159,8 @@ class Datastore: NSObject, ObservableObject {
     
     func updateVisibleLocation() {
         var locationString: String
-        let latitude: Double
-        let longitude: Double
+        var latitude: Double
+        var longitude: Double
         
         if self.isLocationLive == true {
             locationString = "\(self.placemark?.name ?? "–")\n"//", \(place!.countryCode)\n"
@@ -162,15 +172,18 @@ class Datastore: NSObject, ObservableObject {
             longitude = self.selectedLocation?.coordinate.longitude ?? 0
         }
         
+        let latitudeString = self.numberFormatter.string(from: NSNumber(value: abs(latitude)))!
+        let longitudeString = self.numberFormatter.string(from: NSNumber(value: abs(longitude)))!
+        
         if latitude < 0 {
-            locationString += "\(-latitude) S, "
+            locationString += "\(latitudeString) °S, "
         } else {
-            locationString += "\(latitude) N, "
+            locationString += "\(latitudeString) °N, "
         }
         if longitude < 0 {
-            locationString += "\(-longitude) V"
+            locationString += "\(longitudeString) °V"
         } else {
-            locationString += "\(longitude) A"
+            locationString += "\(longitudeString) °A"
         }
         self.locationString = locationString
     }

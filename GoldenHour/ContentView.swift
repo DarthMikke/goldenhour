@@ -29,11 +29,6 @@ struct ContentView: View {
                 ScrollView {
 //                    Spacer()
                     TimeTable().environmentObject(self.store).alignmentGuide(VerticalAlignment.center, computeValue: {_ in 0})
-                    //                .font(.system(size: 15, weight: .heavy))
-                    //.tabItem {
-                    //                Image(systemName: "sun.min.fill")
-                    //                Text("Tidspunkt")
-                    //            }
 //                    Spacer()
                 }
                 HStack {
@@ -75,7 +70,9 @@ struct ContentView: View {
                             .navigationBarTitle(Text("Stader"))
                             .sheet(isPresented: self.$showNewPlaceForm, content: {
                                 NavigationView {
-                                    NewPlaceFormView(showNewPlaceForm: self.$showNewPlaceForm)
+                                    NewPlaceFormView(showNewPlaceForm: self.$showNewPlaceForm,
+                                                     placemark: self.store.placemark,
+                                                     location: self.store.getLocation())
                                         .environment(\.managedObjectContext, moc)
                                         .environmentObject(self.store)
                                         .navigationBarTitle(Text("Ny stad"))
