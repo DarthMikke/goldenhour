@@ -27,9 +27,9 @@ struct ContentView: View {
             Color("BackgroundColor").edgesIgnoringSafeArea(.all)
             VStack {
                 ScrollView {
-//                    Spacer()
-                    TimeTable().environmentObject(self.store).alignmentGuide(VerticalAlignment.center, computeValue: {_ in 0})
-//                    Spacer()
+                    TimeTable()
+                        .environmentObject(self.store)
+                        .alignmentGuide(VerticalAlignment.center, computeValue: {_ in 0})
                 }
                 HStack {
                     Spacer()
@@ -53,19 +53,12 @@ struct ContentView: View {
                             .environment(\.managedObjectContext, moc)
                             .environmentObject(self.store)
                             .navigationBarItems(trailing: HStack {
-                                Button(action: {
-                                    self.showNewPlaceForm = true
-                                }, label: {
-                                    HStack {
-                                        Image(systemName: "plus")
-                                        Text("Legg til plass")
-                                    }.padding()
-                                }).font(.headline)
-                                Button(action: {
-                                    self.showPicker = false
-                                }, label: {
-                                    Image(systemName: "xmark")
-                                }).font(.headline)
+                                Button(action: { self.showNewPlaceForm = true },
+                                       label: { newPlaceButtonLabel })
+                                    .font(.headline)
+                                Button(action: { self.showPicker = false },
+                                       label: { Image(systemName: "xmark") })
+                                    .font(.headline)
                             })
                             .navigationBarTitle(Text("Stader"))
                             .sheet(isPresented: self.$showNewPlaceForm, content: {
@@ -90,6 +83,11 @@ struct ContentView: View {
             }
         }.edgesIgnoringSafeArea(.bottom)
     }
+    
+    let newPlaceButtonLabel: some View = HStack {
+                     Image(systemName: "plus")
+                     Text("Legg til plass")
+                 }.padding()
 }
 
 struct ContentView_Previews: PreviewProvider {
