@@ -115,3 +115,9 @@ struct TimeTable: View {
         .padding(20)
     }
 }
+
+struct TimeTable_Previews: PreviewProvider {
+    static var previews: some View {
+        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
+    }
+}

@@ -38,16 +38,11 @@ struct ContentView: View {
                     }.padding(10)
                     .padding(.bottom, 10)
                     Spacer()
-                    //            PlacePicker().tabItem {
-                    //                Image(systemName: "mappin")
-                    //                Text("Stader")
-                    //            }
                 }.onTapGesture(count: 1, perform: {
                     print("Vis PlacePicker")
                     self.showPicker = true
                 })
                 .sheet(isPresented: self.$showPicker, content: {
-//                    PlacePicker(placesData: load("placesData.json"))
                     NavigationView {
                         PlacePicker(showSelf: self.$showPicker)
                             .environment(\.managedObjectContext, moc)

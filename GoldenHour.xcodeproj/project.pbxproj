@@ -14,11 +14,10 @@
 		754DC3282517E2060016C200 /* utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754DC3212517E2060016C200 /* utilities.swift */; };
 		754DC3292517E2060016C200 /* goldenFormulae.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754DC3222517E2060016C200 /* goldenFormulae.swift */; };
 		754DC32A2517E2060016C200 /* julianDayUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754DC3232517E2060016C200 /* julianDayUtilities.swift */; };
-		754DC3342517E2180016C200 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754DC3302517E2180016C200 /* Place.swift */; };
 		754DC3352517E2180016C200 /* PlacePickerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754DC3312517E2180016C200 /* PlacePickerRow.swift */; };
 		754DC3362517E2180016C200 /* TimeTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754DC3322517E2180016C200 /* TimeTableRow.swift */; };
 		754DC3372517E2180016C200 /* TimeRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754DC3332517E2180016C200 /* TimeRange.swift */; };
-		754DC3402517E2CC0016C200 /* TimeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754DC33E2517E2CC0016C200 /* TimeCard.swift */; };
+		754DC3402517E2CC0016C200 /* TimeTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754DC33E2517E2CC0016C200 /* TimeTable.swift */; };
 		754DC3412517E2CC0016C200 /* PlacePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754DC33F2517E2CC0016C200 /* PlacePicker.swift */; };
 		75D5869825152504001247D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D5869725152504001247D9 /* AppDelegate.swift */; };
 		75D5869A25152504001247D9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D5869925152504001247D9 /* SceneDelegate.swift */; };
@@ -57,11 +56,10 @@
 		754DC3212517E2060016C200 /* utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = utilities.swift; sourceTree = "<group>"; };
 		754DC3222517E2060016C200 /* goldenFormulae.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = goldenFormulae.swift; sourceTree = "<group>"; };
 		754DC3232517E2060016C200 /* julianDayUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = julianDayUtilities.swift; sourceTree = "<group>"; };
-		754DC3302517E2180016C200 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		754DC3312517E2180016C200 /* PlacePickerRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacePickerRow.swift; sourceTree = "<group>"; };
 		754DC3322517E2180016C200 /* TimeTableRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTableRow.swift; sourceTree = "<group>"; };
 		754DC3332517E2180016C200 /* TimeRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeRange.swift; sourceTree = "<group>"; };
-		754DC33E2517E2CC0016C200 /* TimeCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeCard.swift; sourceTree = "<group>"; };
+		754DC33E2517E2CC0016C200 /* TimeTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTable.swift; sourceTree = "<group>"; };
 		754DC33F2517E2CC0016C200 /* PlacePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacePicker.swift; sourceTree = "<group>"; };
 		75D5869425152504001247D9 /* GoldenHour.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoldenHour.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75D5869725152504001247D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -112,7 +110,6 @@
 				754DC31D2517E2060016C200 /* placesData.json */,
 				754DC31E2517E2060016C200 /* Datastore.swift */,
 				751A8AB7251D2475007518AE /* Location.gpx */,
-				754DC3302517E2180016C200 /* Place.swift */,
 				754DC31F2517E2060016C200 /* PlacesData.swift */,
 			);
 			path = Models;
@@ -178,7 +175,7 @@
 				75D5869E25152504001247D9 /* ContentView.swift */,
 				754DC33F2517E2CC0016C200 /* PlacePicker.swift */,
 				75F7373E25323C190011E56C /* NewPlaceFormView.swift */,
-				754DC33E2517E2CC0016C200 /* TimeCard.swift */,
+				754DC33E2517E2CC0016C200 /* TimeTable.swift */,
 				75D586A025152506001247D9 /* Assets.xcassets */,
 				75D586A525152506001247D9 /* LaunchScreen.storyboard */,
 				75D586A825152506001247D9 /* Info.plist */,
@@ -278,7 +275,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1170;
-				LastUpgradeCheck = 1170;
+				LastUpgradeCheck = 1230;
 				ORGANIZATIONNAME = "Michal Jan Warecki";
 				TargetAttributes = {
 					75D5869325152504001247D9 = {
@@ -349,7 +346,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				75D5869825152504001247D9 /* AppDelegate.swift in Sources */,
-				754DC3402517E2CC0016C200 /* TimeCard.swift in Sources */,
+				754DC3402517E2CC0016C200 /* TimeTable.swift in Sources */,
 				75D5869D25152504001247D9 /* GoldenHour.xcdatamodeld in Sources */,
 				754DC3352517E2180016C200 /* PlacePickerRow.swift in Sources */,
 				754DC3272517E2060016C200 /* PlacesData.swift in Sources */,
@@ -360,7 +357,6 @@
 				754DC32A2517E2060016C200 /* julianDayUtilities.swift in Sources */,
 				754DC3282517E2060016C200 /* utilities.swift in Sources */,
 				754DC3262517E2060016C200 /* Datastore.swift in Sources */,
-				754DC3342517E2180016C200 /* Place.swift in Sources */,
 				754DC3292517E2060016C200 /* goldenFormulae.swift in Sources */,
 				754DC3412517E2CC0016C200 /* PlacePicker.swift in Sources */,
 				75F7373F25323C1A0011E56C /* NewPlaceFormView.swift in Sources */,
@@ -436,6 +432,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -497,6 +494,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;

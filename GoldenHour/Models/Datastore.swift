@@ -13,16 +13,23 @@ import Combine
 import SwiftUI
 //import CoreData
 
+struct sunTimes {
+    var goldenJD:   Array<(Double?, Double?)>
+    var blueJD:     Array<(Double?, Double?)>
+    var sunrise:    Double?
+    var sunset:     Double?
+}
+
 class Datastore: NSObject, ObservableObject {
+//    @FetchRequest(entity: Place.entity(), sortDescriptors: []) var places: FetchedResults<Place>
+    @Environment(\.managedObjectContext) var moc
+    
     private     let locationManager  = CLLocationManager()
     private     let geocoder         = CLGeocoder()
                 let objectWillChange = PassthroughSubject<Void, Never>()
-    
     @Published  var status: CLAuthorizationStatus? {
         willSet { objectWillChange.send() }
     }
-    
-    private     var numberFormatter: NumberFormatter
     @Published  var liveLocation: CLLocation? {
         willSet { objectWillChange.send() }
     }
@@ -30,13 +37,14 @@ class Datastore: NSObject, ObservableObject {
         willSet { objectWillChange.send() }
     }
     
+    private     var numberFormatter: NumberFormatter
+    @Published  var formatter:      DateFormatter
+                var dateFormatter:  DateFormatter
+    
     @Published  var isLocationLive:   Bool
-//    @State      var showPicker:     Bool = false
     @Published  var locationId:     UUID?
     @Published  var selectedLocation: CLLocation?
     private     var selectedLocationName: String?
-//    @FetchRequest(entity: Place.entity(), sortDescriptors: []) var places: FetchedResults<Place>
-    @Environment(\.managedObjectContext) var moc
     
     private     var latitude:   Double?
     private     var longitude:  Double?
@@ -68,8 +76,6 @@ class Datastore: NSObject, ObservableObject {
 //        })
 //    }
     
-    @Published  var formatter:      DateFormatter
-                var dateFormatter:  DateFormatter
     
     override init() {
         self.isLocationLive = true

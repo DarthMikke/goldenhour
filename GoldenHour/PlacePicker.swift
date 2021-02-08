@@ -75,8 +75,17 @@ struct PlacePicker: View {
     }
 }
 
+struct PlacePickerPreview: View {
+    @State var showSelf = true
+    
+    var body: some View {
+        PlacePicker(showSelf: $showSelf, isPreview: true)
+            .environmentObject(Datastore())
+    }
+}
+
 struct PlacePicker_Previews: PreviewProvider {
     static var previews: some View {
-        PlacePicker(isPreview: true)
+    PlacePickerPreview()
     }
 }
