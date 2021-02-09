@@ -5,10 +5,59 @@
 //  Created by Michal Jan Warecki on 19/09/2020.
 //  Copyright © 2020 Michal Jan Warecki. All rights reserved.
 //
-
 import SwiftUI
 
 struct TimeTable: View {
+    var model: TimeTableModel
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            HStack {
+                Image(systemName: "sunrise")
+                Spacer()
+                Text(self.model.sunrise)
+            }
+            .padding(5.0)
+            .padding(.top, 10.0)
+            HStack {
+                Text("Blå time")
+                Spacer()
+                TimeRange(self.model.blue[0].0, self.model.blue[0].1)
+            }
+            .padding(5.0)
+            .background(Color("BlueHour"))
+            HStack {
+                Text("Gylden time")
+                Spacer()
+                TimeRange(self.model.golden[0].0, self.model.golden[0].1)
+            }
+            .padding(5.0)
+            .background(Color("GoldenHour"))
+            HStack {
+                Text("Gylden time")
+                Spacer()
+                TimeRange(self.model.golden[1].0, self.model.golden[1].1)
+            }
+            .padding(5.0)
+            .background(Color("GoldenHour"))
+            HStack {
+                Text("Blå time")
+                Spacer()
+                TimeRange(self.model.blue[1].0, self.model.blue[1].1)
+            }
+            .padding(5.0)
+            .background(Color("BlueHour"))
+            HStack {
+                Image(systemName: "sunset")
+                Spacer()
+                Text(self.model.sunset)
+            }
+            .padding(5.0)
+        }
+    }
+}
+
+struct TimeCard: View {
     @EnvironmentObject  var store:  Datastore
     @State              var showDatePicker: Bool = false
 //    @State              var date:   Date {
@@ -30,53 +79,11 @@ struct TimeTable: View {
     var body: some View {
         VStack(spacing: 0) {
             VStack(alignment: .center) {
-                VStack(alignment: .leading, spacing: 0) {
-                    HStack {
-                        Image(systemName: "sunrise")
-                        Spacer()
-                        Text(self.store.sunrise)
-                    }
-                    .padding(5.0)
-                    .padding(.top, 10.0)
-                    HStack {
-                        Text("Blå time")
-                        Spacer()
-                        TimeRange(self.store.blue[0].0, self.store.blue[0].1)
-                    }
-                    .padding(5.0)
-                    .background(Color("BlueHour"))
-                    HStack {
-                        Text("Gylden time")
-                        Spacer()
-                        TimeRange(self.store.golden[0].0, self.store.golden[0].1)
-                    }
-                    .padding(5.0)
-                    .background(Color("GoldenHour"))
-                    HStack {
-                        Text("Gylden time")
-                        Spacer()
-                        TimeRange(self.store.golden[1].0, self.store.golden[1].1)
-                    }
-                    .padding(5.0)
-                    .background(Color("GoldenHour"))
-                    HStack {
-                        Text("Blå time")
-                        Spacer()
-                        TimeRange(self.store.blue[1].0, self.store.blue[1].1)
-                    }
-                    .padding(5.0)
-                    .background(Color("BlueHour"))
-                    HStack {
-                        Image(systemName: "sunset")
-                        Spacer()
-                        Text(self.store.sunset)
-                    }
-                    .padding(5.0)
-                }
+                TimeTable(self.store.sunTimes)
 //                .frame(width: 260.0)
                 HStack {
                     Spacer().frame(width: 10)
-                    Button(action: {self.store.localDate = Date(timeInterval:  -24*3600, since: self.store.localDate)}) {
+                    Button(action: { self.store.updateDate(timeInterval: -24*3600) } ) {
                         Image(systemName: "chevron.left")
                     }
                     Text(self.store.localDateString)
@@ -86,7 +93,7 @@ struct TimeTable: View {
                                 self.toggleDatePicker()
                             }
                         }
-                    Button(action: {self.store.localDate = Date(timeInterval:  24*3600, since: self.store.localDate)}) {
+                    Button(action: { self.store.updateDate(timeInterval:  24*3600) } ) {
                         Image(systemName: "chevron.right")
                     }
                     Spacer().frame(width: 10)
