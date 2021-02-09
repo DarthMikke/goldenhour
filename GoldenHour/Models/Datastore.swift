@@ -65,7 +65,7 @@ class Datastore: NSObject, ObservableObject {
         didSet(newValue) {
             print("Datastore:\(#line) Ny dato: \(newValue)")
             self.geocode()
-//            self.updateVisibleLocation()
+            // self.updateVisibleLocation()
         }
     }
     
@@ -107,11 +107,13 @@ class Datastore: NSObject, ObservableObject {
         self.formatter.dateFormat = "HH:mm"
         self.dateFormatter.dateFormat = "dd.MM.yyyy"
         
-//        print(self.places)
+        // print(self.places)
     }
     
     private func geocode() {
-        // @TODO: Oppdater dato og manuell stad sjølv om det er for dåleg dekning for ei smidig oppleving med "completionHandler"
+        /* @TODO: Oppdater dato og manuell stad sjølv om det er for dåleg
+         * dekning for ei smidig oppleving med "completionHandler"
+         */
         guard let location = self.liveLocation else { return }
         geocoder.reverseGeocodeLocation(location, completionHandler: { (places, error) in
             print("Datastore:\(#line) \(String(describing: places))")
@@ -126,7 +128,7 @@ class Datastore: NSObject, ObservableObject {
                 }// else {
                     self.updateVisibleLocation()
                     self.updateHours()
-//                }
+                // }
                 self.locationManager.stopUpdatingLocation()
             } else {
                 self.placemark = nil
@@ -144,7 +146,7 @@ class Datastore: NSObject, ObservableObject {
         let temporaryLocation = CLLocation(latitude: place.latitude, longitude: place.longitude)
         self.selectedLocation = temporaryLocation
         self.updateVisibleLocation()
-//        self.placemark = CLPlacemark(location: temporaryLocation, name: place.name, postalAddress: nil)
+        // self.placemark = CLPlacemark(location: temporaryLocation, name: place.name, postalAddress: nil)
         
         ///#Oppdater tidspunkt
         self.formatter.timeZone = TimeZone(secondsFromGMT: Int(place.gmtOffset))
@@ -259,6 +261,13 @@ class Datastore: NSObject, ObservableObject {
         print("Datastore:\(#line) \(self.fromDate) – \(self.toDate)")
         print("Datastore:\(#line) Soloppgang: \(self.sunrise), solnedgang: \(self.sunset)")
     }
+
+    func updateDate(timeInterval: Int) {
+        let newDate = Date(timeInterval: timeInterval, since: this.localDate)
+        this.localDate = newDate
+    }
+
+
 }
 
 extension Datastore: CLLocationManagerDelegate {
