@@ -36,7 +36,7 @@ struct PlacePicker: View {
                     //                            Spacer()
                     //                        }
                 }.onTapGesture {
-                    self.store.autolocate()
+                    self.store.setLocation(to: .live)
                     self.showSelf = false
                 }
                 if !isPreview {

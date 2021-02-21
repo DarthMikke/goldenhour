@@ -1,14 +1,15 @@
 //
-//  TimeCard.swift
+//  TimeTable.swift
 //  GoldenHour
 //
-//  Created by Michal Jan Warecki on 19/09/2020.
-//  Copyright © 2020 Michal Jan Warecki. All rights reserved.
+//  Created by Michal Jan Warecki on 09/02/2021.
+//  Copyright © 2021 Michal Jan Warecki. All rights reserved.
 //
+
 import SwiftUI
 
 struct TimeTable: View {
-    var model: TimeTableModel
+    var model: SunTimes
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -57,74 +58,10 @@ struct TimeTable: View {
     }
 }
 
-struct TimeCard: View {
-    @EnvironmentObject  var store:  Datastore
-    @State              var showDatePicker: Bool = false
-//    @State              var date:   Date {
-//        didSet(newValue) {
-//            print("New date: \(newValue)")
-//            self.store.localTime = self.date
-//        }
-//    }
-    
-//    init() {
-//        let placeholderDate = Date()
-//        self.date = placeholderDate
-//    }
-    
-    func toggleDatePicker() {
-        self.showDatePicker = !self.showDatePicker
-    }
-    
-    var body: some View {
-        VStack(spacing: 0) {
-            VStack(alignment: .center) {
-                TimeTable(self.store.sunTimes)
-//                .frame(width: 260.0)
-                HStack {
-                    Spacer().frame(width: 10)
-                    Button(action: { self.store.updateDate(timeInterval: -24*3600) } ) {
-                        Image(systemName: "chevron.left")
-                    }
-                    Text(self.store.localDateString)
-                        .fontWeight(.bold)
-                        .onTapGesture {
-                            withAnimation {
-                                self.toggleDatePicker()
-                            }
-                        }
-                    Button(action: { self.store.updateDate(timeInterval:  24*3600) } ) {
-                        Image(systemName: "chevron.right")
-                    }
-                    Spacer().frame(width: 10)
-                }
-                .font(.title)
-                .padding(.bottom, 15.0)
-                .padding(.top, 20.0)
-                
-                
-                if self.showDatePicker {
-//                    Form {
-                    HStack {
-                        Spacer()
-                        DatePicker("", selection: self.$store.localDate, displayedComponents: .date)
-                            .datePickerStyle(WheelDatePickerStyle())
-                            .transition(.slide)
-//                    }
-                        Spacer(minLength: 30)
-                    }
-                }
-            }
-            .background(Color("CardBackground").edgesIgnoringSafeArea(.all))
-            .foregroundColor(Color("ForegroundColor"))
-            .cornerRadius(10)
-        }
-        .padding(20)
-    }
-}
-
-struct TimeTable_Previews: PreviewProvider {
+struct SwiftUIView_Previews: PreviewProvider {
     static var previews: some View {
-        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
+        TimeTable(model: SunTimes(golden: [("07:27", "09:42"), ("15:01", "17:16")],
+                                  blue: [("06:49", "07:27"), ("17:16", "17:54")],
+                                  sunrise: "08:28", sunset: "16:15"))
     }
 }

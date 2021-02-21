@@ -27,7 +27,7 @@ struct ContentView: View {
             Color("BackgroundColor").edgesIgnoringSafeArea(.all)
             VStack {
                 ScrollView {
-                    TimeTable()
+                    TimeCard()
                         .environmentObject(self.store)
                         .alignmentGuide(VerticalAlignment.center, computeValue: {_ in 0})
                 }

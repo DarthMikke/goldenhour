@@ -17,8 +17,9 @@
 		754DC3352517E2180016C200 /* PlacePickerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754DC3312517E2180016C200 /* PlacePickerRow.swift */; };
 		754DC3362517E2180016C200 /* TimeTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754DC3322517E2180016C200 /* TimeTableRow.swift */; };
 		754DC3372517E2180016C200 /* TimeRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754DC3332517E2180016C200 /* TimeRange.swift */; };
-		754DC3402517E2CC0016C200 /* TimeTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754DC33E2517E2CC0016C200 /* TimeTable.swift */; };
+		754DC3402517E2CC0016C200 /* TimeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754DC33E2517E2CC0016C200 /* TimeCard.swift */; };
 		754DC3412517E2CC0016C200 /* PlacePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754DC33F2517E2CC0016C200 /* PlacePicker.swift */; };
+		75931EFF25D2A97900A2D910 /* TimeTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75931EFE25D2A97900A2D910 /* TimeTable.swift */; };
 		75D5869825152504001247D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D5869725152504001247D9 /* AppDelegate.swift */; };
 		75D5869A25152504001247D9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D5869925152504001247D9 /* SceneDelegate.swift */; };
 		75D5869D25152504001247D9 /* GoldenHour.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 75D5869B25152504001247D9 /* GoldenHour.xcdatamodeld */; };
@@ -59,8 +60,10 @@
 		754DC3312517E2180016C200 /* PlacePickerRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacePickerRow.swift; sourceTree = "<group>"; };
 		754DC3322517E2180016C200 /* TimeTableRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTableRow.swift; sourceTree = "<group>"; };
 		754DC3332517E2180016C200 /* TimeRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeRange.swift; sourceTree = "<group>"; };
-		754DC33E2517E2CC0016C200 /* TimeTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTable.swift; sourceTree = "<group>"; };
+		754DC33E2517E2CC0016C200 /* TimeCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeCard.swift; sourceTree = "<group>"; };
 		754DC33F2517E2CC0016C200 /* PlacePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacePicker.swift; sourceTree = "<group>"; };
+		7587D32F25E2C2FB009FB44D /* Scenario Tests.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Scenario Tests.md"; sourceTree = "<group>"; };
+		75931EFE25D2A97900A2D910 /* TimeTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTable.swift; sourceTree = "<group>"; };
 		75D5869425152504001247D9 /* GoldenHour.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoldenHour.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75D5869725152504001247D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		75D5869925152504001247D9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -175,7 +178,8 @@
 				75D5869E25152504001247D9 /* ContentView.swift */,
 				754DC33F2517E2CC0016C200 /* PlacePicker.swift */,
 				75F7373E25323C190011E56C /* NewPlaceFormView.swift */,
-				754DC33E2517E2CC0016C200 /* TimeTable.swift */,
+				754DC33E2517E2CC0016C200 /* TimeCard.swift */,
+				75931EFE25D2A97900A2D910 /* TimeTable.swift */,
 				75D586A025152506001247D9 /* Assets.xcassets */,
 				75D586A525152506001247D9 /* LaunchScreen.storyboard */,
 				75D586A825152506001247D9 /* Info.plist */,
@@ -208,6 +212,7 @@
 			children = (
 				75D586BC25152507001247D9 /* GoldenHourUITests.swift */,
 				75D586BE25152507001247D9 /* Info.plist */,
+				7587D32F25E2C2FB009FB44D /* Scenario Tests.md */,
 			);
 			path = GoldenHourUITests;
 			sourceTree = "<group>";
@@ -346,7 +351,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				75D5869825152504001247D9 /* AppDelegate.swift in Sources */,
-				754DC3402517E2CC0016C200 /* TimeTable.swift in Sources */,
+				754DC3402517E2CC0016C200 /* TimeCard.swift in Sources */,
+				75931EFF25D2A97900A2D910 /* TimeTable.swift in Sources */,
 				75D5869D25152504001247D9 /* GoldenHour.xcdatamodeld in Sources */,
 				754DC3352517E2180016C200 /* PlacePickerRow.swift in Sources */,
 				754DC3272517E2060016C200 /* PlacesData.swift in Sources */,
