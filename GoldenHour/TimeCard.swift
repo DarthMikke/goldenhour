@@ -66,6 +66,12 @@ struct TimeCard: View {
                         Spacer(minLength: 30)
                     }
                 }
+                
+                Button(action: {}, label: {
+                    Text("Legg til i kalenderen")
+                    Image(systemName: "calendar.badge.plus")
+                })
+                .padding(.bottom, 5.0)
             }
             .background(Color("CardBackground").edgesIgnoringSafeArea(.all))
             .foregroundColor(Color("ForegroundColor"))
@@ -77,6 +83,8 @@ struct TimeCard: View {
 
 struct TimeTable_Previews: PreviewProvider {
     static var previews: some View {
-        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
+        TimeCard()
+            .environmentObject(Datastore())
+            .background(Color.gray)
     }
 }

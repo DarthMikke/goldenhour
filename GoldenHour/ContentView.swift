@@ -52,7 +52,7 @@ struct ContentView: View {
                                        label: { newPlaceButtonLabel })
                                     .font(.headline)
                                 Button(action: { self.showPicker = false },
-                                       label: { Image(systemName: "xmark") })
+                                       label: { closeImage })
                                     .font(.headline)
                             })
                             .navigationBarTitle(Text("Stader"))
@@ -67,7 +67,7 @@ struct ContentView: View {
                                         .navigationBarItems(trailing: Button(action: {
                                             self.showNewPlaceForm = false
                                         }) {
-                                            Image(systemName: "xmark")
+                                            closeImage
                                         })
                                 }
                             })
@@ -83,6 +83,7 @@ struct ContentView: View {
                      Image(systemName: "plus")
                      Text("Legg til plass")
                  }.padding()
+    let closeImage: some View = Image(systemName: "xmark")
 }
 
 struct ContentView_Previews: PreviewProvider {

@@ -11,7 +11,7 @@ import Intents
 import Contacts
 import Combine
 import SwiftUI
-//import CoreData
+import EventKit
 
 struct SunTimes {
     var golden:     Array<(String, String)>
@@ -78,6 +78,8 @@ class Datastore: NSObject, ObservableObject {
         }
     }
     
+    private     var eventStore = EKEventStore()
+    
     override init() {
         self.isLocationLive = true
         self.liveLocationShortString = "Søkjer etter posisjon…"
@@ -96,12 +98,6 @@ class Datastore: NSObject, ObservableObject {
         self.sunTimes = SunTimes(golden: [("–", "–"), ("–", "–")],
                                  blue: [("–", "–"), ("–", "–")],
                                  sunrise: "–", sunset: "–")
-        /// Fjern nedanfor ved git push
-//        self.blue = [("–", "–"), ("–", "–")]
-//        self.golden = [("–", "–"), ("–", "–")]
-//        self.sunrise = "–"
-//        self.sunset = "–"
-        /// Slutt på fjern
         self.localDateString = ".."
         
         super.init()
@@ -117,15 +113,8 @@ class Datastore: NSObject, ObservableObject {
         // print(self.places)
     }
     
-    /**
-            Oppdaterer `self.placemark` i tråd med `self.liveLocation` eller `self.selectedLocation`
-     */
+    /// Oppdaterer `self.placemark` i tråd med `self.liveLocation` eller `self.selectedLocation`
     private func geocode() {
-
-        /* @TODO: Oppdater dato og manuell stad sjølv om det er for dåleg
-         * dekning for ei smidig oppleving med "completionHandler"
-         */
-        
         guard let location = self.isLocationLive ? self.liveLocation : self.selectedLocation
             else { return }
         self.geocoder.reverseGeocodeLocation(location, completionHandler: { (places, error) in
@@ -341,6 +330,17 @@ class Datastore: NSObject, ObservableObject {
         if self.placemark == nil { return }
         self.updateLiveLocationString()
         self.locationManager.stopUpdatingLocation()
+    }
+    
+    func saveToCalendar() {
+        // Check for privileges
+        
+        eventStore.requestAccess(to: .reminder) { granted, error in
+            // Handle the response to the request.
+        }
+        // Take JD date and time
+        
+        
     }
 }
 
