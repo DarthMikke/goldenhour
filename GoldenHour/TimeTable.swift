@@ -62,6 +62,7 @@ struct SwiftUIView_Previews: PreviewProvider {
     static var previews: some View {
         TimeTable(model: SunTimes(golden: [("07:27", "09:42"), ("15:01", "17:16")],
                                   blue: [("06:49", "07:27"), ("17:16", "17:54")],
-                                  sunrise: "08:28", sunset: "16:15"))
+                                  sunrise: "08:28", sunset: "16:15",
+                                  goldenJD: []))
     }
 }

@@ -7,10 +7,18 @@
 //
 
 import SwiftUI
+import EventKit
 
 struct AddEventView: View {
+    @Binding var showNewEventModal: Bool
+    @Binding var state: EventState
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        if self.state == .loading {
+            Loading()
+        } else {
+            Text("Fullført")
+        }
     }
 }
 
@@ -20,7 +28,8 @@ struct Loading: View {
     }
 }
 
-/// @NigelGee https://www.hackingwithswift.com/forums/ios/showing-a-loading-view-within-a-collection-view-section/2151
+/// @NigelGee
+/// https://www.hackingwithswift.com/forums/ios/showing-a-loading-view-within-a-collection-view-section/2151
 struct Spinner: UIViewRepresentable {
     let isAnimating: Bool
     let style: UIActivityIndicatorView.Style

@@ -14,10 +14,12 @@ import SwiftUI
 import EventKit
 
 struct SunTimes {
+    //TODO: Set ut til eiga fil
     var golden:     Array<(String, String)>
     var blue:       Array<(String, String)>
     var sunrise:    String
     var sunset:     String
+    var goldenJD:   Array<(Double?, Double?)>
 }
 
 enum Locations {
@@ -67,7 +69,7 @@ class Datastore: NSObject, ObservableObject {
     
     private     var fromDate:   Date
     private     var toDate:     Date
-    @Published  var sunTimes:   SunTimes{
+    @Published  var sunTimes:   SunTimes {
         willSet { objectWillChange.send() }
     }
     @Published  var localDateString:  String
@@ -77,8 +79,11 @@ class Datastore: NSObject, ObservableObject {
             self.updateHours()
         }
     }
-    
+
+    @Published  var savingState:    EventState = .loading
+    @State private var message = "Ventar for tilgang til kalender…"
     private     var eventStore = EKEventStore()
+    @State private var calendarAccess = true
     
     override init() {
         self.isLocationLive = true
@@ -97,7 +102,8 @@ class Datastore: NSObject, ObservableObject {
         self.dateFormatter = DateFormatter()
         self.sunTimes = SunTimes(golden: [("–", "–"), ("–", "–")],
                                  blue: [("–", "–"), ("–", "–")],
-                                 sunrise: "–", sunset: "–")
+                                 sunrise: "–", sunset: "–",
+                                 goldenJD: [])
         self.localDateString = ".."
         
         super.init()
@@ -122,7 +128,7 @@ class Datastore: NSObject, ObservableObject {
             if error == nil {
                 self.placemark = places?[0]
                 
-                print("Datastore:\(#line) New location: \((self.isLocationLive ? self.liveLocation : self.selectedLocation) == nil ? "–" : String(describing: location.coordinate))") // @TODO: Det ser ut til at denne linja eigenleg er unødvendig
+                print("Datastore:\(#line) New location: \((self.isLocationLive ? self.liveLocation : self.selectedLocation) == nil ? "–" : String(describing: location.coordinate))") // TODO: Det ser ut til at denne linja eigenleg er unødvendig
                 print("Datastore:\(#line) New placemark: \(self.placemark?.name ?? "–") with timezone: \(String(describing: self.placemark?.timeZone?.secondsFromGMT()))")
                 
             } else {
@@ -275,7 +281,9 @@ class Datastore: NSObject, ObservableObject {
             }
         }
         
-        let sunTimes = SunTimes(golden: golden, blue: blue, sunrise: sunrise, sunset: sunset)
+        let sunTimes = SunTimes(golden: golden, blue: blue,
+                                sunrise: sunrise, sunset: sunset,
+                                goldenJD: goldenJD)
         self.sunTimes = sunTimes
         
         print("Datastore:\(#line) \(self.fromDate) – \(self.toDate)")
@@ -332,15 +340,88 @@ class Datastore: NSObject, ObservableObject {
         self.locationManager.stopUpdatingLocation()
     }
     
-    func saveToCalendar() {
-        // Check for privileges
-        
-        eventStore.requestAccess(to: .reminder) { granted, error in
-            // Handle the response to the request.
+    func requestAccess() -> Bool {
+        var authorized: Bool = false
+        switch EKEventStore.authorizationStatus(for: EKEntityType.event) {
+        case .authorized:
+            print("Authorized")
+            authorized = true
+        case .denied:
+            print("Denied")
+        case .notDetermined:
+            print("Not determined")
+        default:
+            print("Default")
         }
+        
+        if !authorized {
+            self.eventStore.requestAccess(to: .event, completion: { (allowed, error) -> Void in
+                if (error != nil) {
+                    self.message = "Error: \(String(describing: error))"
+                    print(self.message)
+                    return
+                }
+                self.message = allowed ? "Fekk tilgang" : "Ingen tilgang"
+                print(self.message)
+            })
+        }
+        return authorized
+    }
+    
+    func saveToCalendar() {
+        self.savingState = .loading
+        // Check for privileges
+        print("Ventar på kalenderen")
+        let access = self.requestAccess()
         // Take JD date and time
         
+        if !access {
+            // Only if access is set first time
+            self.calendarAccess = false
+        }
+        if !self.calendarAccess {
+            // Return if no access to calendar
+            return
+        }
         
+        var saved: Bool = true
+        
+        for jdPair in self.sunTimes.goldenJD {
+            do {
+                try saved = self.saveEvent(
+                    startDate: dateFromJd(jd: jdPair.0!) as Date,
+                    endDate: dateFromJd(jd: jdPair.1!) as Date
+                )
+                print(self.message)
+            } catch {
+                message = "\(#file):\(#line) Feil under lagring: \(error)"
+                saved = false
+                print(message)
+            }
+            if !saved { break }
+        }
+        
+        // Only update saved status after trying to save the last event
+        self.savingState = saved ? .success : .failed
+    }
+    
+    func saveEvent(startDate: Date, endDate: Date) throws -> Bool {
+        var result: Bool = true
+        
+        let event = EKEvent(eventStore: self.eventStore)
+        event.title = "GoldenHour"
+        event.calendar = self.eventStore.defaultCalendarForNewEvents
+        event.startDate = startDate
+        event.endDate = endDate
+        
+        do {
+            try eventStore.save(event, span: .thisEvent, commit: true)
+        } catch {
+            result = false
+            throw error
+        }
+        
+        return result
     }
 }
 

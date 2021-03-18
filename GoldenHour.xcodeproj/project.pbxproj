@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		7516B9A125E8107D002F863D /* SunCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7516B9A025E8107D002F863D /* SunCard.swift */; };
 		7516B9A625E810A6002F863D /* SunCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7516B9A525E810A6002F863D /* SunCardModel.swift */; };
-		7516B9AF25E8275E002F863D /* NewEventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7516B9AE25E8275E002F863D /* NewEventModel.swift */; };
 		7516B9B425E8293B002F863D /* AddEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7516B9B325E8293B002F863D /* AddEventView.swift */; };
 		751A8AB8251D2475007518AE /* Location.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 751A8AB7251D2475007518AE /* Location.gpx */; };
 		754DC3252517E2060016C200 /* placesData.json in Resources */ = {isa = PBXBuildFile; fileRef = 754DC31D2517E2060016C200 /* placesData.json */; };
@@ -24,6 +23,7 @@
 		754DC3402517E2CC0016C200 /* TimeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754DC33E2517E2CC0016C200 /* TimeCard.swift */; };
 		754DC3412517E2CC0016C200 /* PlacePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754DC33F2517E2CC0016C200 /* PlacePicker.swift */; };
 		75931EFF25D2A97900A2D910 /* TimeTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75931EFE25D2A97900A2D910 /* TimeTable.swift */; };
+		759CA9EF25FA737F00C697D6 /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7516B9AE25E8275E002F863D /* EventModel.swift */; };
 		75D5869825152504001247D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D5869725152504001247D9 /* AppDelegate.swift */; };
 		75D5869A25152504001247D9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D5869925152504001247D9 /* SceneDelegate.swift */; };
 		75D5869D25152504001247D9 /* GoldenHour.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 75D5869B25152504001247D9 /* GoldenHour.xcdatamodeld */; };
@@ -57,7 +57,7 @@
 		7516B9A025E8107D002F863D /* SunCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunCard.swift; sourceTree = "<group>"; };
 		7516B9A525E810A6002F863D /* SunCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunCardModel.swift; sourceTree = "<group>"; };
 		7516B9AA25E8213B002F863D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		7516B9AE25E8275E002F863D /* NewEventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventModel.swift; sourceTree = "<group>"; };
+		7516B9AE25E8275E002F863D /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
 		7516B9B325E8293B002F863D /* AddEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventView.swift; sourceTree = "<group>"; };
 		751A8AB7251D2475007518AE /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
 		754DC31D2517E2060016C200 /* placesData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = placesData.json; sourceTree = "<group>"; };
@@ -124,7 +124,7 @@
 				751A8AB7251D2475007518AE /* Location.gpx */,
 				754DC31F2517E2060016C200 /* PlacesData.swift */,
 				7516B9A525E810A6002F863D /* SunCardModel.swift */,
-				7516B9AE25E8275E002F863D /* NewEventModel.swift */,
+				7516B9AE25E8275E002F863D /* EventModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -382,8 +382,8 @@
 				7516B9B425E8293B002F863D /* AddEventView.swift in Sources */,
 				754DC3292517E2060016C200 /* goldenFormulae.swift in Sources */,
 				754DC3412517E2CC0016C200 /* PlacePicker.swift in Sources */,
+				759CA9EF25FA737F00C697D6 /* EventModel.swift in Sources */,
 				75F7373F25323C1A0011E56C /* NewPlaceFormView.swift in Sources */,
-				7516B9AF25E8275E002F863D /* NewEventModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

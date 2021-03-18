@@ -5,6 +5,7 @@
 //  Created by Michal Jan Warecki on 19/09/2020.
 //  Copyright © 2020 Michal Jan Warecki. All rights reserved.
 //
+
 import SwiftUI
 
 
@@ -12,6 +13,7 @@ import SwiftUI
 struct TimeCard: View {
     @EnvironmentObject  var store:  Datastore
     @State              var showDatePicker: Bool = false
+    @State              var showNewEventModal: Bool = false
 //    @State              var date:   Date {
 //        didSet(newValue) {
 //            print("New date: \(newValue)")
@@ -67,7 +69,10 @@ struct TimeCard: View {
                     }
                 }
                 
-                Button(action: {}, label: {
+                Button(action: {
+                    self.showNewEventModal = true
+                    self.store.saveToCalendar()
+                }, label: {
                     Text("Legg til i kalenderen")
                     Image(systemName: "calendar.badge.plus")
                 })
@@ -77,6 +82,12 @@ struct TimeCard: View {
             .foregroundColor(Color("ForegroundColor"))
             .cornerRadius(10)
         }
+        .sheet(
+            isPresented: self.$showNewEventModal,
+            content: {
+                AddEventView(showNewEventModal: self.$showNewEventModal, state: self.$store.savingState)
+            }
+        )
         .padding(20)
     }
 }

@@ -11,7 +11,7 @@ class Geocoder {
     private let geocoder = CLGeocoder()
     
     func updateLocation(location: CLLocation) {
-        self.geocoder.reverseGeocodeLocation(
+//        self.geocoder.reverseGeocodeLocation(
     }
 }
 //: [Next](@next)

@@ -8,10 +8,6 @@
 
 import Foundation
 
-struct EventModel {
-    var eventName: String = "Golden Hour"
-    var place: Place
-    var location: String
-    var startDate: Date
-    var endDate: Date
+enum EventState {
+    case loading, success, failed
 }

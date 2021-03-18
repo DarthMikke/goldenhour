@@ -3,5 +3,6 @@
     <pages>
         <page name='CLGeoocoder'/>
         <page name='Validate text field input'/>
+        <page name='EventKit'/>
     </pages>
 </playground>
