@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7516B9A125E8107D002F863D /* SunCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7516B9A025E8107D002F863D /* SunCard.swift */; };
+		7516B9A625E810A6002F863D /* SunCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7516B9A525E810A6002F863D /* SunCardModel.swift */; };
+		7516B9B425E8293B002F863D /* AddEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7516B9B325E8293B002F863D /* AddEventView.swift */; };
 		751A8AB8251D2475007518AE /* Location.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 751A8AB7251D2475007518AE /* Location.gpx */; };
 		754DC3252517E2060016C200 /* placesData.json in Resources */ = {isa = PBXBuildFile; fileRef = 754DC31D2517E2060016C200 /* placesData.json */; };
 		754DC3262517E2060016C200 /* Datastore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754DC31E2517E2060016C200 /* Datastore.swift */; };
@@ -14,12 +17,13 @@
 		754DC3282517E2060016C200 /* utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754DC3212517E2060016C200 /* utilities.swift */; };
 		754DC3292517E2060016C200 /* goldenFormulae.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754DC3222517E2060016C200 /* goldenFormulae.swift */; };
 		754DC32A2517E2060016C200 /* julianDayUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754DC3232517E2060016C200 /* julianDayUtilities.swift */; };
-		754DC3342517E2180016C200 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754DC3302517E2180016C200 /* Place.swift */; };
 		754DC3352517E2180016C200 /* PlacePickerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754DC3312517E2180016C200 /* PlacePickerRow.swift */; };
 		754DC3362517E2180016C200 /* TimeTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754DC3322517E2180016C200 /* TimeTableRow.swift */; };
 		754DC3372517E2180016C200 /* TimeRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754DC3332517E2180016C200 /* TimeRange.swift */; };
 		754DC3402517E2CC0016C200 /* TimeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754DC33E2517E2CC0016C200 /* TimeCard.swift */; };
 		754DC3412517E2CC0016C200 /* PlacePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754DC33F2517E2CC0016C200 /* PlacePicker.swift */; };
+		75931EFF25D2A97900A2D910 /* TimeTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75931EFE25D2A97900A2D910 /* TimeTable.swift */; };
+		759CA9EF25FA737F00C697D6 /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7516B9AE25E8275E002F863D /* EventModel.swift */; };
 		75D5869825152504001247D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D5869725152504001247D9 /* AppDelegate.swift */; };
 		75D5869A25152504001247D9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D5869925152504001247D9 /* SceneDelegate.swift */; };
 		75D5869D25152504001247D9 /* GoldenHour.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 75D5869B25152504001247D9 /* GoldenHour.xcdatamodeld */; };
@@ -50,6 +54,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7516B9A025E8107D002F863D /* SunCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunCard.swift; sourceTree = "<group>"; };
+		7516B9A525E810A6002F863D /* SunCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunCardModel.swift; sourceTree = "<group>"; };
+		7516B9AA25E8213B002F863D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		7516B9AE25E8275E002F863D /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
+		7516B9B325E8293B002F863D /* AddEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventView.swift; sourceTree = "<group>"; };
 		751A8AB7251D2475007518AE /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
 		754DC31D2517E2060016C200 /* placesData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = placesData.json; sourceTree = "<group>"; };
 		754DC31E2517E2060016C200 /* Datastore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Datastore.swift; sourceTree = "<group>"; };
@@ -57,12 +66,13 @@
 		754DC3212517E2060016C200 /* utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = utilities.swift; sourceTree = "<group>"; };
 		754DC3222517E2060016C200 /* goldenFormulae.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = goldenFormulae.swift; sourceTree = "<group>"; };
 		754DC3232517E2060016C200 /* julianDayUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = julianDayUtilities.swift; sourceTree = "<group>"; };
-		754DC3302517E2180016C200 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		754DC3312517E2180016C200 /* PlacePickerRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacePickerRow.swift; sourceTree = "<group>"; };
 		754DC3322517E2180016C200 /* TimeTableRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTableRow.swift; sourceTree = "<group>"; };
 		754DC3332517E2180016C200 /* TimeRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeRange.swift; sourceTree = "<group>"; };
 		754DC33E2517E2CC0016C200 /* TimeCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeCard.swift; sourceTree = "<group>"; };
 		754DC33F2517E2CC0016C200 /* PlacePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacePicker.swift; sourceTree = "<group>"; };
+		7587D32F25E2C2FB009FB44D /* Scenario Tests.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Scenario Tests.md"; sourceTree = "<group>"; };
+		75931EFE25D2A97900A2D910 /* TimeTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTable.swift; sourceTree = "<group>"; };
 		75D5869425152504001247D9 /* GoldenHour.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoldenHour.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75D5869725152504001247D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		75D5869925152504001247D9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -112,8 +122,9 @@
 				754DC31D2517E2060016C200 /* placesData.json */,
 				754DC31E2517E2060016C200 /* Datastore.swift */,
 				751A8AB7251D2475007518AE /* Location.gpx */,
-				754DC3302517E2180016C200 /* Place.swift */,
 				754DC31F2517E2060016C200 /* PlacesData.swift */,
+				7516B9A525E810A6002F863D /* SunCardModel.swift */,
+				7516B9AE25E8275E002F863D /* EventModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -174,17 +185,21 @@
 				754DC31A2517E2060016C200 /* Models */,
 				754DC32F2517E2180016C200 /* Support Views */,
 				75D5869725152504001247D9 /* AppDelegate.swift */,
+				7516B9B325E8293B002F863D /* AddEventView.swift */,
 				75D5869925152504001247D9 /* SceneDelegate.swift */,
 				75D5869E25152504001247D9 /* ContentView.swift */,
 				754DC33F2517E2CC0016C200 /* PlacePicker.swift */,
 				75F7373E25323C190011E56C /* NewPlaceFormView.swift */,
 				754DC33E2517E2CC0016C200 /* TimeCard.swift */,
+				7516B9A025E8107D002F863D /* SunCard.swift */,
+				75931EFE25D2A97900A2D910 /* TimeTable.swift */,
 				75D586A025152506001247D9 /* Assets.xcassets */,
 				75D586A525152506001247D9 /* LaunchScreen.storyboard */,
 				75D586A825152506001247D9 /* Info.plist */,
 				75D5869B25152504001247D9 /* GoldenHour.xcdatamodeld */,
 				75D586A225152506001247D9 /* Preview Content */,
 				754DC32E2517E2180016C200 /* Resources */,
+				7516B9AA25E8213B002F863D /* README.md */,
 			);
 			path = GoldenHour;
 			sourceTree = "<group>";
@@ -211,6 +226,7 @@
 			children = (
 				75D586BC25152507001247D9 /* GoldenHourUITests.swift */,
 				75D586BE25152507001247D9 /* Info.plist */,
+				7587D32F25E2C2FB009FB44D /* Scenario Tests.md */,
 			);
 			path = GoldenHourUITests;
 			sourceTree = "<group>";
@@ -278,7 +294,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1170;
-				LastUpgradeCheck = 1170;
+				LastUpgradeCheck = 1230;
 				ORGANIZATIONNAME = "Michal Jan Warecki";
 				TargetAttributes = {
 					75D5869325152504001247D9 = {
@@ -350,6 +366,7 @@
 			files = (
 				75D5869825152504001247D9 /* AppDelegate.swift in Sources */,
 				754DC3402517E2CC0016C200 /* TimeCard.swift in Sources */,
+				75931EFF25D2A97900A2D910 /* TimeTable.swift in Sources */,
 				75D5869D25152504001247D9 /* GoldenHour.xcdatamodeld in Sources */,
 				754DC3352517E2180016C200 /* PlacePickerRow.swift in Sources */,
 				754DC3272517E2060016C200 /* PlacesData.swift in Sources */,
@@ -357,12 +374,15 @@
 				75D5869F25152504001247D9 /* ContentView.swift in Sources */,
 				75D5869A25152504001247D9 /* SceneDelegate.swift in Sources */,
 				754DC3372517E2180016C200 /* TimeRange.swift in Sources */,
+				7516B9A125E8107D002F863D /* SunCard.swift in Sources */,
 				754DC32A2517E2060016C200 /* julianDayUtilities.swift in Sources */,
 				754DC3282517E2060016C200 /* utilities.swift in Sources */,
 				754DC3262517E2060016C200 /* Datastore.swift in Sources */,
-				754DC3342517E2180016C200 /* Place.swift in Sources */,
+				7516B9A625E810A6002F863D /* SunCardModel.swift in Sources */,
+				7516B9B425E8293B002F863D /* AddEventView.swift in Sources */,
 				754DC3292517E2060016C200 /* goldenFormulae.swift in Sources */,
 				754DC3412517E2CC0016C200 /* PlacePicker.swift in Sources */,
+				759CA9EF25FA737F00C697D6 /* EventModel.swift in Sources */,
 				75F7373F25323C1A0011E56C /* NewPlaceFormView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -436,6 +456,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -497,6 +518,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;

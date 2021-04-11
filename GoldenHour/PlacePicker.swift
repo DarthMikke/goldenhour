@@ -12,7 +12,7 @@ import SwiftUI
 struct PlacePicker: View {
     @FetchRequest(entity: Place.entity(), sortDescriptors: []) var places: FetchedResults<Place>
     @Environment(\.managedObjectContext) var moc
-    @EnvironmentObject var store: Datastore
+    @EnvironmentObject var environment: Datastore
     @Binding var showSelf: Bool
     
     var isPreview: Bool = false
@@ -23,7 +23,7 @@ struct PlacePicker: View {
                 VStack {
                     HStack {
                         //                            Text(self.store.locationString)
-                        Text("\(self.store.placemark?.name ?? "Ukjent stad")")
+                        Text("\(self.environment.placemark?.name ?? "Ukjent stad")")
                         Spacer()
                     }
                     HStack {
@@ -36,7 +36,7 @@ struct PlacePicker: View {
                     //                            Spacer()
                     //                        }
                 }.onTapGesture {
-                    self.store.autolocate()
+                    self.environment.setLocation(to: .live)
                     self.showSelf = false
                 }
                 if !isPreview {
@@ -45,7 +45,7 @@ struct PlacePicker: View {
                             .onTapGesture(count: 1, perform: {
                                 if place.id != nil {
 //                                self.store.setLocation(id: place.id!)
-                                    self.store.setLocation(to: place)
+                                    self.environment.setLocation(to: place)
                                     self.showSelf = false
                                 }
                                 print(place.id ?? "–")
@@ -75,8 +75,17 @@ struct PlacePicker: View {
     }
 }
 
+struct PlacePickerPreview: View {
+    @State var showSelf = true
+    
+    var body: some View {
+        PlacePicker(showSelf: $showSelf, isPreview: true)
+            .environmentObject(Datastore())
+    }
+}
+
 struct PlacePicker_Previews: PreviewProvider {
     static var previews: some View {
-        PlacePicker(isPreview: true)
+    PlacePickerPreview()
     }
 }
